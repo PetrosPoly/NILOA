@@ -1,0 +1,8 @@
+[
+    [28.329, ["Jam_Anon", "Flask", "CakeMocha_A"], [[32.395, "WoodenBowl"]]],
+    [37.461, ["KitchenKnife", "ChoppingBoard", "GreenPear_A"], [[38.027, "WoodenSpoon"]]],
+    [42.527, ["Orange_A", "Jam_Anon", "KitchenKnife"], [[47.759, "WoodenFork"]]],
+    [48.692, ["SandwichBLT_A", "TvRemote_1", "BlackTablet"], [[50.359, "SandwichBLT_A"]]],
+    [64.723, ["GreenApple_A", "ChoppingBoard", "KitchenKnife"], [[67.656, "WoodenSpoon"]]],
+    [70.455, ["Jam_Anon", "WoodenSpoon", "Flask"], [[76.988, "BirdHouseToy"]]]
+]

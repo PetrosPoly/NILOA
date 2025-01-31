@@ -1,0 +1,9 @@
+[
+    [11.765, ["BlackCeramicDishSmall", "Magazine01_1", "CandlePattern04_1"], [[12.431, "BlackCeramicDishSmall"]]],
+    [19.63, ["Magazine03_1", "Magazine04_2", "DinoToy"], [[21.097, "DinoToy"]]],
+    [33.995, ["Magazine04_1", "TvRemote_1", "CandlePattern04_1"], [[35.261, "BookDeepLearning"]]],
+    [61.49, ["DinoToy", "BlackCeramicDishSmall", "BlackRoundTable"], [[61.69, "BlackCeramicBowl"]]],
+    [70.889, ["KitchenKnife", "MuffinPan", "WoodenSpoon"], [[71.988, "BlackCeramicBowl"]]],
+    [74.255, ["Cracker_Anon", "HeatTrivet", "BirdHouseToy"], [[75.755, "WoodenSpoon"]]],
+    [79.321, ["CandleDishMedium", "Flask", "BlackTablet"], [[82.953, "WoodenSpoon"], [83.853, "BlackCeramicBowl"]]]
+]

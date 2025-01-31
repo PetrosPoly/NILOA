@@ -1,0 +1,58 @@
+{
+    "26.829": [
+        {
+            "object": "MuffinPan",
+            "reason": "The MuffinPan has the highest focus (91 counts) and is within a suitable distance (0.818 meters), making it the most likely object for interaction. The proximity consistency also supports likelihood as the user has spent considerable time near it."
+        },
+        {
+            "object": "KitchenKnife",
+            "reason": "The KitchenKnife has a strong focus (78 counts) and is relatively close (0.980 meters) which, combined with its ease of approach (1.034 seconds), makes it the second most probable object for interaction."
+        },
+        {
+            "object": "Mortar",
+            "reason": "The Mortar has good focus (74 counts) and proximity (0.741 meters) but requires slightly longer to approach (2.985 seconds). Despite not meeting the time threshold, its focus and distance indicate a significant likelihood for interaction."
+        }
+    ],
+    "41.327": [
+        {
+            "object": "WoodenSpoon",
+            "reason": "The WoodenSpoon has the highest focus and proximity counts, indicating that the user has been paying close attention to it and is also within a comfortable distance to interact. Additionally, it has the shortest time to approach, making it the most probable object for interaction."
+        },
+        {
+            "object": "WoodenFork",
+            "reason": "The WoodenFork meets the distance threshold and has a high focus count, suggesting that while not as strongly focused on as the WoodenSpoon, the user is still likely interested in utilizing it for their task. The time to approach is also reasonable, even if it\u2019s slightly longer than that of the WoodenSpoon."
+        },
+        {
+            "object": "Jam_Anon",
+            "reason": "Although the Jam_Anon does not meet the time threshold, it has a considerable focus and proximity score, which indicates that the user has been observing it closely. It\u2019s possible that the user may still reach for it soon, albeit with a longer approach time compared to the other two objects."
+        }
+    ],
+    "58.791": [
+        {
+            "object": "Cereal_Anon",
+            "reason": "Cereal_Anon has the highest focus consistency with a strong count of 60, and it is within close proximity at a distance of 0.958 meters, indicating that the user is likely observing it closely. Additionally, it has a reasonable time to approach, making it a high-probability candidate for interaction."
+        },
+        {
+            "object": "BlackCeramicBowl",
+            "reason": "The BlackCeramicBowl has a solid focus count of 74, indicating prolonged observation. The proximity count is also decent at 43, and it is quite close at a distance of 0.771 meters. These factors suggest that the user is likely to interact with this object."
+        },
+        {
+            "object": "BlackCeramicDishLarge",
+            "reason": "The BlackCeramicDishLarge shows a good focus count of 74 and proximity count of 42, alongside an approachable distance of 0.794 meters. Although it has a slightly lower level of focus compared to the first two objects, it is still a viable option for interaction."
+        }
+    ],
+    "65.156": [
+        {
+            "object": "CandleDishSmall",
+            "reason": "CandleDishSmall has the highest focus count (91), proximity count (91), and a time to approach of 1.35 seconds, satisfying all defined thresholds, making it the most likely object for interaction."
+        },
+        {
+            "object": "Donut_B",
+            "reason": "Donut_B also meets the distance and proximity thresholds with strong focus counts (72) and the lowest time to approach (0.98 seconds), indicating it is highly probable the user will interact with it."
+        },
+        {
+            "object": "GreenApple_A",
+            "reason": "Although GreenApple_A does not meet the time threshold (2.22 seconds), it has a strong proximity count (83) and a reasonable focus count (68), which makes it a plausible candidate for interaction due to the maintained proximity."
+        }
+    ]
+}

@@ -1,0 +1,170 @@
+{
+    "5.399": [
+        {
+            "object": "ChoppingBoard",
+            "probability": 0.4
+        },
+        {
+            "object": "WoodenFork",
+            "probability": 0.35
+        },
+        {
+            "object": "WoodenBowl",
+            "probability": 0.25
+        }
+    ],
+    "18.83": [
+        {
+            "object": "KitchenKnife",
+            "probability": 0.4
+        },
+        {
+            "object": "WoodenSpoon",
+            "probability": 0.35
+        },
+        {
+            "object": "AirPurifier_1",
+            "probability": 0.25
+        }
+    ],
+    "26.762": [
+        {
+            "object": "MuffinPan",
+            "probability": 0.4
+        },
+        {
+            "object": "ChoppingBoard",
+            "probability": 0.35
+        },
+        {
+            "object": "Pestel",
+            "probability": 0.25
+        }
+    ],
+    "33.361": [
+        {
+            "object": "WoodenBowl",
+            "probability": 0.4
+        },
+        {
+            "object": "Mango_A",
+            "probability": 0.35
+        },
+        {
+            "object": "CakeMocha_A",
+            "probability": 0.25
+        }
+    ],
+    "39.227": [
+        {
+            "object": "WoodenSpoon",
+            "probability": 0.4
+        },
+        {
+            "object": "Jam_Anon",
+            "probability": 0.35
+        },
+        {
+            "object": "WhiteFlatwareTray",
+            "probability": 0.25
+        }
+    ],
+    "43.226": [
+        {
+            "object": "CoffeeCanisterLarge",
+            "probability": 0.4
+        },
+        {
+            "object": "WhiteUtensilTray",
+            "probability": 0.35
+        },
+        {
+            "object": "RedClock",
+            "probability": 0.25
+        }
+    ],
+    "47.726": [
+        {
+            "object": "Donut_B",
+            "probability": 0.5
+        },
+        {
+            "object": "WhiteUtensilTray",
+            "probability": 0.3
+        },
+        {
+            "object": "Jam_Anon",
+            "probability": 0.2
+        }
+    ],
+    "56.791": [
+        {
+            "object": "BlackCeramicBowl",
+            "probability": 0.4
+        },
+        {
+            "object": "CandleDishSmall",
+            "probability": 0.35
+        },
+        {
+            "object": "BlackCeramicDishSmall",
+            "probability": 0.25
+        }
+    ],
+    "61.857": [
+        {
+            "object": "Tomato_A",
+            "probability": 0.4
+        },
+        {
+            "object": "Flask",
+            "probability": 0.35
+        },
+        {
+            "object": "CandleDishSmall",
+            "probability": 0.25
+        }
+    ],
+    "70.455": [
+        {
+            "object": "CandlePattern03_1",
+            "probability": 0.4
+        },
+        {
+            "object": "Cracker_Anon",
+            "probability": 0.35
+        },
+        {
+            "object": "CandlePattern04_1",
+            "probability": 0.25
+        }
+    ],
+    "84.753": [
+        {
+            "object": "MuffinPan",
+            "probability": 0.4
+        },
+        {
+            "object": "ChoppingBoard",
+            "probability": 0.35
+        },
+        {
+            "object": "KitchenKnife",
+            "probability": 0.25
+        }
+    ],
+    "88.886": [
+        {
+            "object": "BlackCeramicBowl",
+            "probability": 0.4
+        },
+        {
+            "object": "Donut_B",
+            "probability": 0.35
+        },
+        {
+            "object": "Mango_A",
+            "probability": 0.25
+        }
+    ]
+}

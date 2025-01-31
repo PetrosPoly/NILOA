@@ -1,0 +1,100 @@
+{
+    "26.762": [
+        {
+            "object": "MuffinPan",
+            "probability": 0.4
+        },
+        {
+            "object": "ChoppingBoard",
+            "probability": 0.35
+        },
+        {
+            "object": "Pestel",
+            "probability": 0.25
+        }
+    ],
+    "35.628": [
+        {
+            "object": "Mango_A",
+            "probability": 0.4
+        },
+        {
+            "object": "CakeMocha_A",
+            "probability": 0.35
+        },
+        {
+            "object": "BlackCeramicBowl",
+            "probability": 0.25
+        }
+    ],
+    "39.227": [
+        {
+            "object": "WoodenSpoon",
+            "probability": 0.4
+        },
+        {
+            "object": "Jam_Anon",
+            "probability": 0.35
+        },
+        {
+            "object": "WhiteFlatwareTray",
+            "probability": 0.25
+        }
+    ],
+    "58.091": [
+        {
+            "object": "BlackCeramicBowl",
+            "probability": 0.4
+        },
+        {
+            "object": "BlackCeramicDishSmall",
+            "probability": 0.35
+        },
+        {
+            "object": "BlackCeramicDishLarge",
+            "probability": 0.25
+        }
+    ],
+    "65.156": [
+        {
+            "object": "CandleDishSmall",
+            "probability": 0.4
+        },
+        {
+            "object": "Donut_B",
+            "probability": 0.35
+        },
+        {
+            "object": "Tomato_A",
+            "probability": 0.25
+        }
+    ],
+    "71.755": [
+        {
+            "object": "Magazine04_2",
+            "probability": 0.4
+        },
+        {
+            "object": "Magazine04_1",
+            "probability": 0.35
+        },
+        {
+            "object": "Cracker_Anon",
+            "probability": 0.25
+        }
+    ],
+    "84.753": [
+        {
+            "object": "MuffinPan",
+            "probability": 0.4
+        },
+        {
+            "object": "ChoppingBoard",
+            "probability": 0.35
+        },
+        {
+            "object": "KitchenKnife",
+            "probability": 0.25
+        }
+    ]
+}

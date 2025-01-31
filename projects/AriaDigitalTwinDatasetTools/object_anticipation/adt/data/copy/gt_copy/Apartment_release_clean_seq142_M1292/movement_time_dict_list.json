@@ -1,0 +1,12 @@
+{"BlackKitchenChair": {"start_times": [3.766], "end_times": [9.632]}, 
+"BlackCeramicBowl": {"start_times": [9.632, 11.498, 11.631, 11.898, 14.131, 17.73, 18.13, 49.759, 52.092], "end_times": [11.431, 11.565, 11.831, 14.064, 17.631, 17.864, 23.163, 51.858, 59.224]}, 
+"WhiteChair": {"start_times": [11.032, 12.531], "end_times": [12.098, 14.164]}, 
+"Cereal_Anon": {"start_times": [17.497, 18.33, 85.653], "end_times": [18.23, 18.397, 94.685]}, 
+"KitchenKnife": {"start_times": [18.364, 21.497, 45.293, 50.092, 51.858, 59.224], "end_times": [18.397, 21.53, 45.326, 50.125, 52.058, 76.421]}, 
+"BlackCeramicMug": {"start_times": [23.163], "end_times": [28.895]}, 
+"BlackCeramicDishSmall": {"start_times": [28.895, 31.095, 38.894, 45.293, 52.092], "end_times": [31.028, 38.76, 44.893, 49.759, 59.224]}, 
+"Frisbee_Anon": {"start_times": [31.028, 31.128], "end_times": [31.095, 36.761]},
+"BlackCeramicDishLarge": {"start_times": [38.76, 52.058], "end_times": [45.726, 59.224]}, 
+"WoodenBowl": {"start_times": [67.056, 74.521, 76.421], "end_times": [74.455, 74.988, 77.588]}, 
+"MuffinPan": {"start_times": [77.588], "end_times": [85.653]}, 
+"CoffeeCanisterSmall": {"start_times": [94.685], "end_times": []}}

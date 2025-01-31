@@ -1,0 +1,8 @@
+[
+    [4.999, ["ChoppingBoard", "WoodenFork", "Mango_A"], [[6.432, "ChoppingBoard"]]],
+    [19.597, ["KitchenKnife", "WoodenSpoon", "ConsoleTable"], [[19.73, "KitchenKnife"], [20.33, "WoodenSpoon"]]],
+    [33.828, ["Mango_A", "WoodenBowl", "WoodenFork"], [[34.861, "WoodenFork"]]],
+    [48.526, ["TvRemote_1", "ToothbrushHolder", "Donut_B"], [[48.959, "Donut_B"]]],
+    [70.089, ["CandlePattern03_1", "TvRemote_1", "Cracker_Anon"], [[73.422, "Cracker_Anon"]]],
+    [78.954, ["CoffeeCanisterLarge", "ChoppingBoard", "BlackCeramicMug"], [[82.953, "BlackCeramicMug"]]]
+]

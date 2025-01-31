@@ -1,0 +1,86 @@
+{
+    "14.464": [
+        {
+            "object": "ChoppingBoard",
+            "probability": 0.4
+        },
+        {
+            "object": "MuffinPan",
+            "probability": 0.35
+        },
+        {
+            "object": "Mortar",
+            "probability": 0.25
+        }
+    ],
+    "26.829": [
+        {
+            "object": "MuffinPan",
+            "probability": 0.4
+        },
+        {
+            "object": "KitchenKnife",
+            "probability": 0.35
+        },
+        {
+            "object": "ChoppingBoard",
+            "probability": 0.25
+        }
+    ],
+    "39.227": [
+        {
+            "object": "WoodenSpoon",
+            "probability": 0.4
+        },
+        {
+            "object": "Jam_Anon",
+            "probability": 0.35
+        },
+        {
+            "object": "WhiteFlatwareTray",
+            "probability": 0.25
+        }
+    ],
+    "58.791": [
+        {
+            "object": "Cereal_Anon",
+            "probability": 0.4
+        },
+        {
+            "object": "BlackCeramicBowl",
+            "probability": 0.35
+        },
+        {
+            "object": "BlackCeramicDishLarge",
+            "probability": 0.25
+        }
+    ],
+    "64.456": [
+        {
+            "object": "CandleDishSmall",
+            "probability": 0.4
+        },
+        {
+            "object": "Tomato_A",
+            "probability": 0.35
+        },
+        {
+            "object": "CandleDishMedium",
+            "probability": 0.25
+        }
+    ],
+    "82.087": [
+        {
+            "object": "Cracker_Anon",
+            "probability": 0.6
+        },
+        {
+            "object": "Jam_Anon",
+            "probability": 0.25
+        },
+        {
+            "object": "Cereal_Anon",
+            "probability": 0.15
+        }
+    ]
+}

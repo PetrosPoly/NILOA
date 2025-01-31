@@ -17,6 +17,8 @@ import argparse
 from math import tan
 from typing import Dict, Set
 
+import functools
+
 import numpy as np
 import rerun as rr
 
@@ -83,7 +85,7 @@ from utils.tools import (
 )
 
 from utils.openai_models import ( 
-    activate_llm,                                             # Me: Query the LLM
+    get_valid_llm_response,                                   # Me: Query the LLM
     setup_logger,                                             # Me: Setup the logger
     append_to_history_string,                                 # Me: Write the history in a string
     process_llm_response,                                     # Me: Post processing of LLM output 
@@ -110,60 +112,16 @@ def parse_args():
     parser.add_argument("--visualize_objects", action='store_true',help="Visualize the objects in the rerun.io")   
     return parser.parse_args()
 
-# Set up logging configuration
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-main_logger = logging.getLogger(__name__)
-
-# ==============================================
-# Parameters Settting
-# ==============================================
-
-# Parameters for the language model module
-time_thresholds = [1, 2, 3, 4, 5]           # Time (in seconds) before interaction to activate the LLM
-avg_dot_threshold_highs = [0.7]             # Filter objects: keep only those with an average dot product above this value
-avg_dot_threshold_lows = [0.2]              # Filter objects: keep only those with an average dot product above this minimum value
-avg_distance_threshold_highs = [3]          # Filter objects: keep only those with an average distance below this value
-avg_distance_threshold_lows = [1]           # Filter objects: keep only those with an average distance above this minimum value
-
-high_dot_thresholds = [0.7, 0.8, 0.9]                      # Count objects with dot product values exceeding this threshold
-distance_thresholds = [1, 1.5, 2]                        # Count objects with distance values below this threshold
-high_dot_counters_threshold = [15, 30, 45, 60, 75, 90]   # Keep objects that exceed this count for dot product values above the threshold
-distance_counters_threshold = [15, 30, 45, 60, 75, 90]   # Keep objects that exceed this count for distance values below the threshold
-
-variables_window_times = [3.0]                   # Sliding time window (in seconds) for tracking these parameters
-
-# Parameters for the LLM reactivation module
-minimum_time_deactivated = [2.0]                 # Minimum time (in seconds) the LLM remains deactivated after querying
-maximum_time_deactivated = [5.0]                 # Maximum time (in seconds) before the LLM is activated again after querying
-user_relative_movement = [2.0]                   # Threshold for user's relative movement (distance) after LLM is queried
-object_percentage_overlap = [0.7]                # Percentage of overlap required for objects near the user to trigger reactivation
-
-# Generate all combinations of the parameters
-param_combinations = [
-    {
-        "time_threshold": t,
-        "avg_dot_high": adh,
-        "avg_dot_low": adl,
-        "avg_distance_high": adhg,
-        "avg_distance_low": adlg,
-        "high_dot_threshold": hdt,
-        "distance_threshold": dt,
-        "high_dot_counters_threshold": hdct,
-        "distance_counters_threshold": dct,       # Corrected to match the earlier definition
-        "window_time": w, 
-        "minimum_time_deactivated": mintd,                
-        "maximum_time_deactivated": maxtd,             
-        "user_relative_movement": urm,                 
-        "object_percentage_overlap" : obo,   
-    }
-    for t, adh, adl, adhg, adlg, hdt, dt, hdct, dct, w, mintd, maxtd, urm, obo in product(
-        time_thresholds, avg_dot_threshold_highs, avg_dot_threshold_lows, 
-        avg_distance_threshold_highs, avg_distance_threshold_lows,
-        high_dot_thresholds, distance_thresholds,
-        high_dot_counters_threshold, distance_counters_threshold, variables_window_times, 
-        minimum_time_deactivated, maximum_time_deactivated, user_relative_movement, object_percentage_overlap   
-    )
-]
+def setup_main_logger():
+    logger = logging.getLogger("MainLogger")
+    logger.setLevel(logging.INFO)
+    if not logger.handlers:
+        fh = logging.FileHandler("logs/main.log")
+        fh.setLevel(logging.INFO)
+        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        fh.setFormatter(formatter)
+        logger.addHandler(fh)
+    return logger
 
 # ==============================================
 # Run through the parameter combinatons in parallel
@@ -172,64 +130,70 @@ param_combinations = [
 # Get the number of available CPUs
 available_cpus = mp.cpu_count()
 print(f"Available CPUs: {available_cpus}")
-    
-def run_simulation(parameters):
 
-    def main():
-        
-        work_in_xz_plane = True
-        
-        # ==============================================
-        # Filenames / Paths  & Load of the Data
-        # ==============================================
-        args = parse_args()
-        
-        # Base folder path for saving predictions
-        project_path = "Documents/projectaria_sandbox/projectaria_tools/projects/AriaDigitalTwinDatasetTools/object_anticipation/adt/"
-        sequence_path = args.sequence_path
+def run_simulation(args, parameters):
 
-        # Datasets path
-        datasets_path = 'Documents/projectaria_tools_adt_data/'
-        dataset_folder = os.path.join(datasets_path, sequence_path)
-        os.makedirs(dataset_folder, exist_ok=True)                                          # Me: Ensure the entire directory 
-        
-        # VRS file and Ground 
-        vrsfile = os.path.join(dataset_folder, "video.vrs")
-        ADT_trajectory_file = os.path.join(dataset_folder, "aria_trajectory.csv")
-        
-        # Path to log items for the LLM - Define the CSV file to log the items and check if it exists to write the header
-        csv_file = os.path.join(project_path,'utils','txt_files','interaction_log.csv')
-
-        # Save the list to a file
-        json_folder = os.path.join(project_path,'utils','json')
-        os.makedirs(json_folder, exist_ok=True)                        
-        json_file = os.path.join(json_folder,'param_combinations.json')
-        
-        with open(json_file, 'w') as file:
-            json.dump(param_combinations, file)
-            
-        # Parameters folder name
-        parameter_folder_name = (
+    """
+    Worker function to run simulation for a given parameter combination.
+    """
+    # Initialize simulation-specific logger
+    parameter_folder_name = (
                 f"time_{parameters['time_threshold']}_"
                 f"highdot_{parameters['high_dot_threshold']}_"
                 f"highdotcount_{parameters['high_dot_counters_threshold']}_"
                 f"dist_{parameters['distance_threshold']}_"
                 f"distcount_{parameters['distance_counters_threshold']}"
             )
-    
+
+    # Initialize a logger for each simulation (optional but recommended)
+    logger = logging.getLogger(f"Simulation-{parameter_folder_name}")
+    logger.setLevel(logging.DEBUG)
+
+    if not logger.handlers:
+        os.makedirs("logs", exist_ok=True)
+        fh = logging.FileHandler(f"logs/simulation_{parameter_folder_name}.log")
+        fh.setLevel(logging.DEBUG)
+        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        fh.setFormatter(formatter)
+        logger.addHandler(fh)
+
+    logger.info("Starting simulation with parametes: %s", parameters)
+
+    try:
+        # Your existing simulation logic goes here
+        work_in_xz_plane = True
+
+        # ==============================================
+        # Filenames / Paths  & Load of the Data
+        # ==============================================
+        args = parse_args()
+
+        # Base folder path for saving predictions
+        project_path = "/home/ppolydorou/Documents/projectaria_sandbox/next_active_object_anticipation_projectaria_twin_dataset/projects/AriaDigitalTwinDatasetTools/object_anticipation/adt"
+        sequence_path = args.sequence_path
+
+        datasets_path = '/mnt/data/petros/projectaria_tools_adt_data/'
+        dataset_folder = os.path.join(datasets_path, sequence_path)
+        os.makedirs(dataset_folder, exist_ok=True)                                          # Me: Ensure the entire directory 
+
+        # VRS file and Ground 
+        vrsfile = os.path.join(dataset_folder, "video.vrs")
+        ADT_trajectory_file = os.path.join(dataset_folder, "aria_trajectory.csv")
+
         # Print the paths
-        print("Sequence_path: ", dataset_folder)
-        print("Project_path", project_path)
-        print("VRS File Path: ", vrsfile)  
-        print("GT trajectory path: ", ADT_trajectory_file)
-        
+        logger.info(f"Sequence path: {dataset_folder}")
+        logger.info(f"Project path: {project_path}")
+        logger.info(f"VRS File Path: {vrsfile}")
+        logger.info(f"GT trajectory path: {ADT_trajectory_file}")
+
         try:
             paths_provider = AriaDigitalTwinDataPathsProvider(dataset_folder) 
             data_paths = paths_provider.get_datapaths_by_device_num(args.device_number)
             gt_provider = AriaDigitalTwinDataProvider(data_paths)
         except Exception as e:
             print("Error: ", str(e))
-            exit(-1)
+            raise
+            # exit(-1)
 
         # True to run the rerun.io 
         args.runrr and initialize_rerun_viewer(rr, args)
@@ -238,12 +202,12 @@ def run_simulation(parameters):
         aria_pose_start_timestamp = gt_provider.get_start_time_ns()                     # Me: Get the start time of the Aria poses in nanoseconds
         aria_pose_end_timestamp = gt_provider.get_end_time_ns()                         # Me: Get the end time
         rgb_stream_id = StreamId("214-1")
-        
+
         # Load the camera calibration
         rgb_camera_calibration = gt_provider.get_aria_camera_calibration(rgb_stream_id) # Me: Get the camera calibration of an Aria camera, including intrinsics, distortion params,and projection functions.
         T_Device_Cam = rgb_camera_calibration.get_transform_device_camera()             # Me: Τhis does not change based on time
         args.runrr and log_camera_calibration(rr, rgb_camera_calibration, args)
-        
+
         # Get all timestamps (in ns) of all observations of an Aria sensor
         img_timestamps_ns = gt_provider.get_aria_device_capture_timestamps_ns(rgb_stream_id)    
         img_timestamps_ns = [
@@ -255,13 +219,13 @@ def run_simulation(parameters):
             )
         ]
         start_time = img_timestamps_ns[0] / 1e9
-        
+
         # Log Aria Glasses outline
         raw_data_provider_ptr = gt_provider.raw_data_provider_ptr()
         device_calibration = raw_data_provider_ptr.get_device_calibration()
         aria_glasses_point_outline = AriaGlassesOutline(device_calibration)
         args.runrr and log_aria_glasses(rr, aria_glasses_point_outline)
-        
+
         # ==============================================
         # Initialization 
         # ==============================================
@@ -269,15 +233,13 @@ def run_simulation(parameters):
         static_obj_ids: Set[int] = set()                                                # Me: initializes a set intended to store the IDs of static objects. 
         dynamic_obj_moved: Set[str] = set()                                             # Me: initializes a set intended to store the IDS of dynamic objects.
 
-        # Intialize variable for visualizations part 
         previous_obj_ids = set()                                                        # Me: keep track of previously logged objects ids 
         previous_obj_names = set()                                                      # Me: keep track of previously logged objects names
-        
-        # Collection for the time window variables
+
         average = True                                                                  # Me: use the accumulated average dot value and distance to filter the objects
         previous_time_ns = aria_pose_start_timestamp                                    # Me: Initialize time to store duration of each object
-        
-        # Activation of LLM
+
+        # LLM Activation Variables
         llm_activated = False                                                           # Me: LLM activated or not
         history_log: Dict                                                               # Me: This is for now 
 
@@ -298,42 +260,43 @@ def run_simulation(parameters):
         previous_objects_within_radius = []                                             # Me: Is used to check if the user is stll in the same area that LLM has been activated in order to avoid reactivatiomn of the LLM 
         last_activation_time = 0                                                        # Me: the time activatiom of an LLM
         all_unique_object_names_with_high_dot = set()                                               
-    
+
         # Initialize classes
-        group_analyzer = ObjectGroupAnalyzer(parameters["object_percentage_overlap"], parameters["user_relative_movement"], history_size=15, future_size=5)                                         
+        group_analyzer = ObjectGroupAnalyzer(
+            parameters["object_percentage_overlap"], 
+            parameters["user_relative_movement"], 
+            history_size=15, future_size=5
+        )                                         
         statistics = Statistics(
-                                parameters['window_time'], 
-                                parameters["high_dot_threshold"], 
-                                parameters["distance_threshold"], 
-                                parameters["distance_threshold"], 
-                                parameters["time_threshold"]
-                                )      # Me: Initialize the ObjectStatistics instance
-        
+            parameters['window_time'], 
+            parameters["high_dot_threshold"], 
+            parameters["distance_threshold"], 
+            parameters["distance_threshold"], 
+            parameters["time_threshold"]
+        )      # Me: Initialize the ObjectStatistics instance
+
         # ==============================================
         # Load the Ground truth data 
         # ==============================================
-        
+
         with open(os.path.join(project_path,'data','gt',args.sequence_path,'movement_time_dict.json'), 'r') as json_file:
             movement_time_dict = json.load(json_file)
-        
+
         gt_object_names = np.array(list(movement_time_dict.keys()))
         gt_start_times = np.array([movement_time_dict[obj]['start_time'] for obj in gt_object_names])
         gt_end_times = np.array([movement_time_dict[obj]['end_time'] for obj in gt_object_names])
-        
+
         # ==============================================
         # Loop over all timestamps in the sequence
         # ==============================================
 
         for timestamp_ns in tqdm(img_timestamps_ns):
             args.runrr  and set_rerun_time(rr, timestamp_ns)
-        
+
             ## Current time in seconds
             current_time_ns = timestamp_ns
             current_time_s = round((current_time_ns / 1e9 - start_time), 3)
-            
-            if current_time_s > 70 and current_time_s < 71 :
-                print('stop')      
-                  
+                
             ## Time Difference
             time_difference_ns = (current_time_ns - previous_time_ns) / 1e9                                                  # Me: Calculate the time difference in seconds
             previous_time_ns = current_time_ns
@@ -360,7 +323,7 @@ def run_simulation(parameters):
                 p_dev_scene = aria_3d_pose_with_dt.data()                                                                     # Me: Pose of the user's device on Scene frame
                 T_Scene_Device = p_dev_scene.transform_scene_device                                                           # Me: SE3 of the device 
                 T_Scene_Cam = T_Scene_Device @ T_Device_Cam                                                                   # Me: SE3 from Camera to Scene
-                   
+                
                 ## User's position and velocity in the scene frame 
                 user_position_scene = aria_3d_pose_with_dt.data().transform_scene_device.translation()[0]      
                 user_velocity_device = aria_3d_pose_with_dt.data().device_linear_velocity # given in the device frame as per https://facebookresearch.github.io/projectaria_tools/docs/data_formats/mps/slam/mps_trajectory
@@ -417,10 +380,16 @@ def run_simulation(parameters):
             # Objects Poses
             # ==============================================      
             
-            bbox3d_with_dt = gt_provider.get_object_3d_boundingboxes_by_timestamp_ns(timestamp_ns)
-            assert bbox3d_with_dt.is_valid(), "3D bounding box is not available"
-            bboxes3d = bbox3d_with_dt.data()                                                                                        # Me: Objects data
+            try:
+                bbox3d_with_dt = gt_provider.get_object_3d_boundingboxes_by_timestamp_ns(timestamp_ns)
+                if not bbox3d_with_dt.is_valid():
+                    raise ValueError("3D bounding box is not available")
+            except Exception as e:
+                logger.error(f"Error processing timestamp {timestamp_ns}: {e}")
+                return  # Exit the current simulation gracefully
 
+            bboxes3d = bbox3d_with_dt.data()    # Me: Objects data
+            
             # TODO: check where the centroid is located
             
             ## Extract object IDs and their positions
@@ -624,7 +593,7 @@ def run_simulation(parameters):
             # HIGH DOT / LOW DISTANCE / TIME COUNTERS 
             filtered_high_dot_counts = {obj_id: visible_high_dot_counts[obj_id] for obj_id in filtered_obj_ids if obj_id in visible_high_dot_counts}
             filtered_low_distance_counts = {obj_id: visible_low_distance_counts[obj_id] for obj_id in filtered_obj_ids if obj_id in visible_low_distance_counts}
-                   
+                
             # ==============================================
             # Keep the Important Context Information for the feasible objects
             # ==============================================  
@@ -667,7 +636,7 @@ def run_simulation(parameters):
             
             # high dot values & counts but also distance
             high_dot_counts_but_also_distance = {}
-      
+
             # distance values & counts
             low_distance_counts = {}
             
@@ -745,12 +714,12 @@ def run_simulation(parameters):
                     if object_time_xz < parameters["time_threshold"]:
                         less_than_2_seconds_dict[object_name] = object_time_xz
                         less_than_2_seconds_list.append(object_time_xz)
-                        print(f"\t Time to approach {object_name} is less than 2 seconds: {object_time_xz}")
+                        # print(f"\t Time to approach {object_name} is less than 2 seconds: {object_time_xz}")
 
             # Maintain history of objects with high dot values
             all_unique_object_names_with_high_dot |= set(high_dot_counts.keys()) 
             high_dot_history = list(all_unique_object_names_with_high_dot)
-        
+
             # ==============================================
             # LLM Query and Activation
             # ==============================================  
@@ -773,6 +742,7 @@ def run_simulation(parameters):
             3. Dot Value
             4. Distance Value
             5. Time to approach
+            6. Past predictions
             
             =====
             
@@ -782,16 +752,16 @@ def run_simulation(parameters):
             Objects meeting the distance and time thresholds but showing partial dot counts, or objects meeting the dot and time thresholds with partial distance counts, are the next most likely.
             Objects that do not meet the time threshold but satisfy both the dot and distance thresholds (since proximity typically suggests a reduced time to approach) are considered probable.
             Objects that fail to meet the time threshold but satisfy either the dot or distance thresholds (though not both) are considered less likely but still possibl
-           
+
             """
 
             if (high_dot_counts_but_also_distance
                 and low_distance_counts_but_also_high_dot
                 and less_than_2_seconds_dict  # this list contains only objects that have duration visibility over
                 ):
-        
+
                 # Print statement 
-                print("the 3 criteria have been satisfied")
+                # print("the 3 criteria have been satisfied")
 
                 # Write information only if LLM is ON and is ready to activated 
                 if args.use_llm and not llm_activated:  
@@ -819,13 +789,16 @@ def run_simulation(parameters):
                         )
             
                         # Convert history log to a string
-                        history_log_string = str(history_log)
+                        log_content = str(history_log)
                         
                         # use the LLM
-                        llm_response = activate_llm(history_log_string, parameters)
                         
-                        # process the output of the LLM
-                        objects_possibility, rationale, predicted_objects, goal = process_llm_response(llm_response)
+                        try:
+                            llm_response = get_valid_llm_response(log_content, parameters, max_retries=5)
+                        except Exception as e:
+                            logger.error(f"Failed to obtain a valid LLM response after retries: {e}")
+                            # Decide whether to skip this simulation or handle it differently
+                            return
 
                         # Update the last time LLM was activated 
                         last_activation_time = current_time_s
@@ -834,35 +807,22 @@ def run_simulation(parameters):
                         llm_activated = True
                         user_relative_total_movement = 0
 
-                        # dictionaries & lists
-                        objects_possibility_dict[current_time_s] = objects_possibility
-                        rationale_dict[current_time_s] = rationale
-                        predictions_dict[current_time_s] = predicted_objects
-                        goals_dict[current_time_s] = goal
+                        # dictionaries
+                        objects_possibility_dict[current_time_s] = llm_response[0]
+                        rationale_dict[current_time_s] = llm_response[1]
+                        predictions_dict[current_time_s] = llm_response[2]
+                        goals_dict[current_time_s] = llm_response[3]
 
-                        objects_possibilities.append(objects_possibility)
-                        rationales.append(rationale)
-                        predictions.append(predicted_objects)
-                        goals.append(goal)
-                        llm_times.append(current_time_s)
+                        # Log LLM response
+                        llm_log_filename = f'logs/time_{current_time_s}.log'
+                        llm_logger = setup_logger(llm_log_filename)
+                        llm_logger.info(f"LLM Response: {llm_response}")
 
-                        # Log the output of LLM in log file 
-                        log_filename = f'logs/time_{current_time_s}.log'    
-                        log_folder = os.path.join(project_path, log_filename)               
-                        os.makedirs(os.path.dirname(log_folder), exist_ok=True)
-                        logger = setup_logger(log_folder)
-                        logger.info(f"LLM Response: {llm_response}")
-                        
-                        # Log history_log content in the log file
+                        # Log history
                         history_log_filename = f'logs/history_{current_time_s}.log'
-                        history_log_folder = os.path.join(project_path, history_log_filename)
-                        os.makedirs(os.path.dirname(history_log_folder), exist_ok=True)
-                        history_logger = setup_logger(history_log_folder)
+                        history_logger = setup_logger(history_log_filename)
                         history_logger.info(f"History Log: {history_log}")
 
-                        # Write the conditions to excel for debugging
-                        write_to_excel(filtered_names_high_dot_counts, filtered_names_low_distance_counts, filtered_names_time_to_approach, filtered_names_dot, filtered_names_distances, predictions_dict, goals_dict, args.sequence_path, parameter_folder_name, current_time_s)
-            
             # ==============================================
             # Objects Inside the radius & LLM activation conditions
             # ==============================================  
@@ -893,11 +853,11 @@ def run_simulation(parameters):
                     user_relative_total_movement = 0
                     last_activation_time = current_time_s
                     llm_activated = False
-        
+
         # ==============================================
         # Store the predictions of the LLM
         # ==============================================  
-        
+
         # Define the path for saving the predictions
         predictions_folder = os.path.join(project_path, 'data', 'predictions', sequence_path, parameter_folder_name)
         os.makedirs(predictions_folder, exist_ok=True)
@@ -920,19 +880,139 @@ def run_simulation(parameters):
             json.dump(goals_dict, json_file, indent=4)
 
         print(f"Saved predictions for parameters to {prediction_file}")
+        logger.info("Simulation completed successfully.")
 
-    main()
+    except Exception as e:
+        logger.error(f"An error occurred: {e}", exc_info=True)
+
+    finally:
+        # Clean up handlers to prevent duplication
+        handlers = logger.handlers[:]
+        for handler in handlers:
+            handler.close()
+            logger.removeHandler(handler)
 
 # ==============================================
 # Run for different parameter combinations in parallel
 # ==============================================
-if __name__ == "__main__":
 
+def main():
+    args = parse_args()
+    main_logger = setup_main_logger()
+    main_logger.info("Starting main_parallel.py")
+
+    # ==============================================
+    # Parameters Settting
+    # ==============================================
+
+    # # Define parameters (as in your original code)
+    # time_thresholds = [1, 1.5, 2, 2.5, 3, 3.5, 4, 5, 6]
+    # avg_dot_threshold_highs = [0.7]
+    # avg_dot_threshold_lows = [0.2]
+    # avg_distance_threshold_highs = [3]
+    # avg_distance_threshold_lows = [1]
+    # high_dot_thresholds = [0.8]
+    # distance_thresholds = [1.5, 2, 2.5]
+    # high_dot_counters_threshold = [60, 75] 
+    # distance_counters_threshold = [15, 30] #, 45, 60, 75, 90]
+    # variables_window_times = [3.0]
+    # minimum_time_deactivated = [2.0] # [1.0 ,2.0, 3.0]
+    # maximum_time_deactivated = [5.0] # [3.0, 5.0, 6.0] 
+    # user_relative_movement = [2.0] # [1.0, 2.0, 3.0]
+    # object_percentage_overlap = [0.7]
+
+    # Define parameters (as in your original code)
+    # time_thresholds = [1.5] # [3, 4, 5, 6]
+    # avg_dot_threshold_highs = [0.7]
+    # avg_dot_threshold_lows = [0.2]
+    # avg_distance_threshold_highs = [3]
+    # avg_distance_threshold_lows = [1]
+    # high_dot_thresholds = [0.7, 0.8, 0.9] # [0.6, 0.95]
+    # distance_thresholds = [2.5, 3, 3.5] # [1.5, 2, 2.5]   # [1, 3, 3.5] 
+    # high_dot_counters_threshold = [60, 75]  # [15, 30, 45, 60, 75, 90] # [60, 75] 
+    # distance_counters_threshold = [15, 30] # [15, 30, 45, 60, 75, 90] # [30] 
+    # variables_window_times = [3.0]
+    # minimum_time_deactivated = [2.0] # [1.0 ,2.0, 3.0]
+    # maximum_time_deactivated = [5.0] # [3.0, 5.0, 6.0] 
+    # user_relative_movement = [2.0] # [1.0, 2.0, 3.0]
+    # object_percentage_overlap = [0.7]
+
+    # # # Define parameters (as in your original code)
+    # time_thresholds = [1.5] # [3, 4, 5, 6]
+    # avg_dot_threshold_highs = [0.7]
+    # avg_dot_threshold_lows = [0.2]
+    # avg_distance_threshold_highs = [3]
+    # avg_distance_threshold_lows = [1]
+    # high_dot_thresholds = [0.9, 0.95]
+    # distance_thresholds = [1.5 , 3] # [1.5, 2, 2.5]
+    # high_dot_counters_threshold = [60, 75] #, 90] # [15, 30, 45, 
+    # distance_counters_threshold = [30] # [15, 30, 45] #, 60, 75, 90]
+    # variables_window_times = [3.0]
+    # minimum_time_deactivated = [1.0 ,2.0, 3.0]
+    # maximum_time_deactivated = [4] 
+    # user_relative_movement = [1.0, 2.0, 3.0]
+    # object_percentage_overlap = [0.7]
+
+
+    # # Define parameters (as in your original code)
+    # time_thresholds = [2] # [3, 4, 5, 6]
+    # avg_dot_threshold_highs = [0.7]
+    # avg_dot_threshold_lows = [0.2]
+    # avg_distance_threshold_highs = [3]
+    # avg_distance_threshold_lows = [1]
+    # high_dot_thresholds = [0.6, 0.7, 0.8, 0.9, 0.95]
+    # distance_thresholds = [1.5, 2, 2.5, 3, 3.5] # [1.5, 2, 2.5]
+    # high_dot_counters_threshold = [60] 
+    # distance_counters_threshold = [30]
+    # variables_window_times = [3.0]
+    # minimum_time_deactivated = [2.0]
+    # maximum_time_deactivated = [5.0] 
+    # user_relative_movement = [2.0]
+    # object_percentage_overlap = [0.7]
+
+    # Generate all parameter combinations
+    param_combinations = [
+        {
+            "time_threshold": t,
+            "avg_dot_high": adh,
+            "avg_dot_low": adl,
+            "avg_distance_high": adhg,
+            "avg_distance_low": adlg,
+            "high_dot_threshold": hdt,
+            "distance_threshold": dt,
+            "high_dot_counters_threshold": hdct,
+            "distance_counters_threshold": dct,
+            "window_time": w,
+            "minimum_time_deactivated": mintd,
+            "maximum_time_deactivated": maxtd,
+            "user_relative_movement": urm,
+            "object_percentage_overlap": obo,
+        }
+        for t, adh, adl, adhg, adlg, hdt, dt, hdct, dct, w, mintd, maxtd, urm, obo in product(
+            time_thresholds, avg_dot_threshold_highs, avg_dot_threshold_lows,
+            avg_distance_threshold_highs, avg_distance_threshold_lows,
+            high_dot_thresholds, distance_thresholds,
+            high_dot_counters_threshold, distance_counters_threshold, variables_window_times,
+            minimum_time_deactivated, maximum_time_deactivated, user_relative_movement, object_percentage_overlap
+        )
+    ]
+
+    # Start multiprocessing pool
+    pool_size = min(mp.cpu_count(), 32)  # Adjust based on your system
+    main_logger.info(f"Using pool size: {pool_size}")
     start_time = time.time()
 
-    with mp.Pool(mp.cpu_count()) as pool:
-        pool.map(run_simulation, param_combinations)
+    with mp.Pool(pool_size) as pool:
+        # Use functools.partial to pass 'args' to 'run_simulation'
+        worker = functools.partial(run_simulation, args)
+        for _ in tqdm(pool.imap_unordered(worker, param_combinations), total=len(param_combinations), desc="Running Simulations"):
+            pass  # Results are being logged within the worker
 
     end_time = time.time()
-    print(f"Total time taken: {end_time - start_time:.2f} seconds")
+    total_time = end_time - start_time
+    main_logger.info(f"All simulations completed in {total_time:.2f} seconds.")
+    print(f"Total time taken: {total_time:.2f} seconds")
+
+if __name__ == "__main__":
+    main()
 

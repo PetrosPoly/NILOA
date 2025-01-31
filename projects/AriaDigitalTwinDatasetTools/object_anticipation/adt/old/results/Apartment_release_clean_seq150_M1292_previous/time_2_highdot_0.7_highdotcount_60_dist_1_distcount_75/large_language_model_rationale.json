@@ -1,0 +1,86 @@
+{
+    "14.464": [
+        {
+            "object": "ChoppingBoard",
+            "reason": "The ChoppingBoard has the highest focus and proximity counts, indicating prolonged attention and close distance (0.908 meters). It also meets the distance and time thresholds, making it the most probable object for interaction."
+        },
+        {
+            "object": "MuffinPan",
+            "reason": "The MuffinPan shows strong focus consistency and proximity counts, along with a time to approach that is within the threshold. It indicates significant user interest and readiness to interact soon, placing it as the next likely object."
+        },
+        {
+            "object": "Mortar",
+            "reason": "Although the Mortar has lower focus counts compared to the first two, its proximity is close and the time to approach is also acceptable. It satisfies both focus and proximity thresholds but does not meet the time threshold, making it less likely but still a candidate for interaction."
+        }
+    ],
+    "26.829": [
+        {
+            "object": "KitchenKnife",
+            "reason": "The KitchenKnife has a high focus count of 85 and a proximity count of 91, and it has a reasonable time to approach of approximately 1 seconds, well below the 2-second threshold. This makes it highly probable that the user will interact with this object soon."
+        },
+        {
+            "object": "MuffinPan",
+            "reason": "The MuffinPan also has a high focus count of 91 and is very close to the user (0.818 meters), along with a fast time to approach of about 0.9 seconds. It meets both the focus and distance criteria, making it the second most probable object for interaction."
+        },
+        {
+            "object": "Mortar",
+            "reason": "The Mortar has a strong focus count of 91 and is within a close distance of 0.741 meters. Although its time to approach is slightly longer at about 3 seconds, it satisfies the focus and distance thresholds, placing it as a plausible object for interaction."
+        }
+    ],
+    "39.227": [
+        {
+            "object": "WoodenSpoon",
+            "reason": "The WoodenSpoon has a high focus count (85) and is within the distance threshold (0.760m) with a very short time to approach (0.93 seconds). This indicates strong interest and proximity, making it highly probable for interaction."
+        },
+        {
+            "object": "Jam_Anon",
+            "reason": "The Jam_Anon shows the highest focus count (86) and is close (0.873m) to the user, with a good time to approach (2.45 seconds). While it doesn't meet the time threshold exactly, the focus and proximity indicate it's another highly probable object for interaction."
+        },
+        {
+            "object": "WhiteFlatwareTray",
+            "reason": "The WhiteFlatwareTray has a solid focus count (84) and is within an acceptable distance (0.881m). While its approach time (1.24 seconds) falls within the time threshold as well, it supports continued attention despite being slightly less focused than the top two objects."
+        }
+    ],
+    "58.791": [
+        {
+            "object": "Cereal_Anon",
+            "reason": "Cereal_Anon has the highest focus count (87) and a proximity count of 91, indicating it has captured the user's attention significantly while they are very close to it. Additionally, its time to approach (2.37 seconds) meets the threshold, making it highly probable that the user will interact with it."
+        },
+        {
+            "object": "BlackCeramicBowl",
+            "reason": "The BlackCeramicBowl has a respectable focus count (74) and proximity count (43), along with a favorable distance (0.77 meters) and a time to approach (0.68 seconds) well within the threshold. This suggests the user is likely considering this object for interaction."
+        },
+        {
+            "object": "BlackCeramicDishSmall",
+            "reason": "The BlackCeramicDishSmall also meets the distance and time thresholds with a slightly lower focus count (70) and a proximity count (39). Given its close proximity to the user and reasonable focus, it is still considered a probable interaction choice."
+        }
+    ],
+    "64.456": [
+        {
+            "object": "CandleDishSmall",
+            "reason": "This object has the highest focus consistency (91 counts) and is within a close distance (0.849 meters) requiring only approximately 1.95 seconds to approach, satisfying all three thresholds."
+        },
+        {
+            "object": "CandleDishMedium",
+            "reason": "With a focus count of 91 and a distance of 0.939 meters needing about 3.42 seconds to approach, this object meets the focus and distance criteria, making it a likely candidate despite not meeting the time threshold."
+        },
+        {
+            "object": "GreenApple_A",
+            "reason": "Therefore, it has significant focus counts (91) but exceeds the time threshold slightly, with a distance of 0.928 meters and an approach time of about 3.32 seconds, placing it next in line due to established patterns of interaction."
+        }
+    ],
+    "82.087": [
+        {
+            "object": "Cracker_Anon",
+            "reason": "Cracker_Anon has the highest focus and proximity counts, indicating the user has been consistently observing and staying close to this object. Its proximity is well within the distance threshold, suggesting that the user is likely to interact with it soon."
+        },
+        {
+            "object": "Jam_Anon",
+            "reason": "Jam_Anon meets the distance and focus thresholds fairly well, suggesting that while it may not have the same level of focus as Cracker_Anon, it remains a strong candidate for the next interaction due to its close proximity and user focus."
+        },
+        {
+            "object": "WoodenSpoon",
+            "reason": "WoodenSpoon has historical focus consistency but does not meet the distance threshold as strongly as the others. However, it is still nearby, which indicates that the user might reach for it during their task."
+        }
+    ]
+}

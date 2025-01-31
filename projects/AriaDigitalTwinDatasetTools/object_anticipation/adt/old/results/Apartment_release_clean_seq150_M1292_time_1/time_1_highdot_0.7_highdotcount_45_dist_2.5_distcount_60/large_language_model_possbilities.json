@@ -1,0 +1,170 @@
+{
+    "5.399": [
+        {
+            "object": "ChoppingBoard",
+            "probability": 0.4
+        },
+        {
+            "object": "WoodenFork",
+            "probability": 0.35
+        },
+        {
+            "object": "Mango_A",
+            "probability": 0.25
+        }
+    ],
+    "19.097": [
+        {
+            "object": "KitchenKnife",
+            "probability": 0.4
+        },
+        {
+            "object": "WoodenSpoon",
+            "probability": 0.35
+        },
+        {
+            "object": "ConsoleTable",
+            "probability": 0.25
+        }
+    ],
+    "26.762": [
+        {
+            "object": "ChoppingBoard",
+            "probability": 0.4
+        },
+        {
+            "object": "MuffinPan",
+            "probability": 0.35
+        },
+        {
+            "object": "Pestel",
+            "probability": 0.25
+        }
+    ],
+    "33.361": [
+        {
+            "object": "WoodenBowl",
+            "probability": 0.4
+        },
+        {
+            "object": "Mango_A",
+            "probability": 0.35
+        },
+        {
+            "object": "Flask",
+            "probability": 0.25
+        }
+    ],
+    "39.227": [
+        {
+            "object": "Jam_Anon",
+            "probability": 0.4
+        },
+        {
+            "object": "WoodenSpoon",
+            "probability": 0.35
+        },
+        {
+            "object": "WhiteFlatwareTray",
+            "probability": 0.25
+        }
+    ],
+    "43.226": [
+        {
+            "object": "CoffeeCanisterLarge",
+            "probability": 0.4
+        },
+        {
+            "object": "WhiteUtensilTray",
+            "probability": 0.35
+        },
+        {
+            "object": "ChoppingBoard",
+            "probability": 0.25
+        }
+    ],
+    "47.792": [
+        {
+            "object": "TvRemote_1",
+            "probability": 0.4
+        },
+        {
+            "object": "Donut_B",
+            "probability": 0.35
+        },
+        {
+            "object": "ToothbrushHolder",
+            "probability": 0.25
+        }
+    ],
+    "56.791": [
+        {
+            "object": "BlackCeramicBowl",
+            "probability": 0.4
+        },
+        {
+            "object": "Mango_A",
+            "probability": 0.35
+        },
+        {
+            "object": "Flask",
+            "probability": 0.25
+        }
+    ],
+    "61.857": [
+        {
+            "object": "CandleDishSmall",
+            "probability": 0.4
+        },
+        {
+            "object": "BlackCeramicBowl",
+            "probability": 0.35
+        },
+        {
+            "object": "GreenApple_A",
+            "probability": 0.25
+        }
+    ],
+    "70.455": [
+        {
+            "object": "Cracker_Anon",
+            "probability": 0.4
+        },
+        {
+            "object": "CandlePattern03_1",
+            "probability": 0.35
+        },
+        {
+            "object": "WoodenToothbrushHolder",
+            "probability": 0.25
+        }
+    ],
+    "84.753": [
+        {
+            "object": "KitchenKnife",
+            "probability": 0.4
+        },
+        {
+            "object": "ChoppingBoard",
+            "probability": 0.35
+        },
+        {
+            "object": "MuffinPan",
+            "probability": 0.25
+        }
+    ],
+    "88.886": [
+        {
+            "object": "BlackCeramicBowl",
+            "probability": 0.4
+        },
+        {
+            "object": "Mango_A",
+            "probability": 0.35
+        },
+        {
+            "object": "Donut_B",
+            "probability": 0.25
+        }
+    ]
+}

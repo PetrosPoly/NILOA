@@ -1,0 +1,142 @@
+{
+    "8.732": [
+        {
+            "object": "WoodenFork",
+            "probability": 0.4
+        },
+        {
+            "object": "BlackCeramicBowl",
+            "probability": 0.35
+        },
+        {
+            "object": "BlackCeramicDishSmall",
+            "probability": 0.25
+        }
+    ],
+    "14.464": [
+        {
+            "object": "ChoppingBoard",
+            "probability": 0.4
+        },
+        {
+            "object": "MuffinPan",
+            "probability": 0.35
+        },
+        {
+            "object": "Pestel",
+            "probability": 0.25
+        }
+    ],
+    "26.829": [
+        {
+            "object": "KitchenKnife",
+            "probability": 0.4
+        },
+        {
+            "object": "MuffinPan",
+            "probability": 0.35
+        },
+        {
+            "object": "ChoppingBoard",
+            "probability": 0.25
+        }
+    ],
+    "35.628": [
+        {
+            "object": "Mango_A",
+            "probability": 0.4
+        },
+        {
+            "object": "CakeMocha_A",
+            "probability": 0.35
+        },
+        {
+            "object": "HeatTrivet",
+            "probability": 0.25
+        }
+    ],
+    "39.36": [
+        {
+            "object": "Jam_Anon",
+            "probability": 0.4
+        },
+        {
+            "object": "WoodenSpoon",
+            "probability": 0.35
+        },
+        {
+            "object": "WhiteFlatwareTray",
+            "probability": 0.25
+        }
+    ],
+    "52.292": [
+        {
+            "object": "ToothbrushHolder",
+            "probability": 0.4
+        },
+        {
+            "object": "BirdHouseToy",
+            "probability": 0.35
+        },
+        {
+            "object": "TvRemote_1",
+            "probability": 0.25
+        }
+    ],
+    "58.791": [
+        {
+            "object": "BlackCeramicBowl",
+            "probability": 0.4
+        },
+        {
+            "object": "Cereal_Anon",
+            "probability": 0.35
+        },
+        {
+            "object": "Mango_A",
+            "probability": 0.25
+        }
+    ],
+    "64.456": [
+        {
+            "object": "CandleDishSmall",
+            "probability": 0.4
+        },
+        {
+            "object": "Flask",
+            "probability": 0.35
+        },
+        {
+            "object": "CandleDishMedium",
+            "probability": 0.25
+        }
+    ],
+    "72.755": [
+        {
+            "object": "WoodenToothbrushHolder",
+            "probability": 0.4
+        },
+        {
+            "object": "Cracker_Anon",
+            "probability": 0.35
+        },
+        {
+            "object": "CandlePattern03_1",
+            "probability": 0.25
+        }
+    ],
+    "82.087": [
+        {
+            "object": "BlackCeramicMug",
+            "probability": 0.4
+        },
+        {
+            "object": "Cracker_Anon",
+            "probability": 0.35
+        },
+        {
+            "object": "WoodenFork",
+            "probability": 0.25
+        }
+    ]
+}

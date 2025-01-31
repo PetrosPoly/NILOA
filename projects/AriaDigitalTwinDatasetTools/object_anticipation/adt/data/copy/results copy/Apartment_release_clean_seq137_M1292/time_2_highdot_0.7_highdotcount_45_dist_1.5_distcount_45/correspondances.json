@@ -1,0 +1,10 @@
+[
+    [3.133, ["SandwichBLT_A", "Donut_B", "BambooPlate"], [[11.165, "GreenApple_A"]]],
+    [28.462, ["CakeMocha_A", "WhiteVase", "MuffinPan"], [[29.362, "MuffinPan"]]],
+    [36.794, ["MuffinPan", "Cereal_Anon", "WoodenBowl"], [[40.16, "BlackCeramicDishLarge"]]],
+    [43.826, ["SandwichBLT_A", "HeatTrivet", "Donut_B"], [[46.259, "Donut_B"]]],
+    [54.091, ["Donut_B", "CandleDishMedium", "Jam_Anon"], [[59.757, "BlackCeramicBowl"]]],
+    [59.924, ["CandlePattern04_1", "CandlePattern03_1", "CandlePattern01_1"], [[62.357, "DinoToy"]]],
+    [69.356, ["BlackCeramicDishSmall", "AirPurifier_1", "CandleDishMedium"], [[69.789, "BlackCeramicDishSmall"], [69.822, "BlackCeramicBowl"]]],
+    [73.288, ["BlackCeramicDishLarge", "BambooPlate", "Mug_2"], [[76.121, "BlackCeramicDishSmall"]]]
+]

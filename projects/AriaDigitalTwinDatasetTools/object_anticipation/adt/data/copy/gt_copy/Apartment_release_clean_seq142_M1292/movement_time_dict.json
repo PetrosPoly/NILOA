@@ -1,0 +1,11 @@
+{"BlackKitchenChair": {"start_time": 3.766, "end_time": 6.766},
+ "BlackCeramicBowl": {"start_time": 9.632, "end_time": 52.525}, 
+ "WhiteChair": {"start_time": 11.032, "end_time": 14.131}, 
+ "Cereal_Anon": {"start_time": 17.497, "end_time": 91.252}, 
+ "KitchenKnife": {"start_time": 18.364, "end_time": 75.755}, 
+ "BlackCeramicMug": {"start_time": 23.163, "end_time": 25.063}, 
+ "BlackCeramicDishSmall": {"start_time": 28.895, "end_time": 52.525}, 
+ "Frisbee_Anon": {"start_time": 31.028, "end_time": 36.727},
+  "BlackCeramicDishLarge": {"start_time": 38.76, "end_time": 52.525}, 
+  "WoodenBowl": {"start_time": 67.056, "end_time": 76.688}, 
+  "MuffinPan": {"start_time": 77.588, "end_time": 78.021}}

@@ -1,0 +1,44 @@
+{
+    "26.829": [
+        {
+            "object": "MuffinPan",
+            "reason": "The MuffinPan has the highest focus count (91) and also meets the proximity (50) and time (0.91 seconds) thresholds. This indicates a strong likelihood of interaction as the user is focusing and positioned close to it while being able to approach it quickly."
+        },
+        {
+            "object": "KitchenKnife",
+            "reason": "The KitchenKnife has a considerable focus count (78) and is within an acceptable proximity (91 counts), as well as a reasonable approach time (1.03 seconds). This makes it a strong candidate for interaction, especially as it is likely necessary for preparing food items."
+        },
+        {
+            "object": "Mortar",
+            "reason": "Although the Mortar has a lower focus count (74) compared to the top two objects, it is still within proximity (47 counts) and has a reasonable approach time (2.98 seconds). This combination suggests that while it may not be the most imminent object for interaction, it still remains relevant in the user's current activity."
+        }
+    ],
+    "41.327": [
+        {
+            "object": "WoodenSpoon",
+            "reason": "The WoodenSpoon has high counts in both focus (90) and proximity (91) and requires only 0.91 seconds to approach, satisfying all thresholds."
+        },
+        {
+            "object": "Jam_Anon",
+            "reason": "The Jam_Anon also meets the focus threshold (69) and proximity threshold (91) while requiring 2.63 seconds to approach. It doesn't meet the time threshold but shows strong evidence of potential interaction."
+        },
+        {
+            "object": "WhiteFlatwareTray",
+            "reason": "The WhiteFlatwareTray is close enough to meet the proximity threshold (87) but does not reach the time threshold. However, it has a focus count (91) that suggests it could be of interest to the user."
+        }
+    ],
+    "58.791": [
+        {
+            "object": "Cereal_Anon",
+            "reason": "Cereal_Anon has the highest focus count (91) and is within close proximity (0.958 meters). It doesn't meet the time threshold but has a significant focus consistency, suggesting the user is likely contemplating interacting with it."
+        },
+        {
+            "object": "BlackCeramicBowl",
+            "reason": "The BlackCeramicBowl has a strong proximity count (43) and is very close (0.771 meters) to the user. While it doesn't fully satisfy the time threshold, it has a good focus count (74), indicating it\u2019s a probable object for interaction."
+        },
+        {
+            "object": "BlackCeramicDishLarge",
+            "reason": "The BlackCeramicDishLarge has a focus count of 74 and is within close distance (0.794 meters). It meets the focus and proximity criteria, indicating it is reasonably likely to be the next object the user may choose to interact with."
+        }
+    ]
+}

@@ -7,26 +7,79 @@ from utils.evaluation import LLMEvaluation
 import pandas as pd
 
 # Project path
-project_path = "Documents/projectaria_sandbox/projectaria_tools/projects/AriaDigitalTwinDatasetTools/object_anticipation/adt/"
-sequences = ['Apartment_release_clean_seq150_M1292'] #, 'Apartment_release_work_seq107_M1292']
+project_path = "/home/ppolydorou/Documents/projectaria_sandbox/next_active_object_anticipation_projectaria_twin_dataset/projects/AriaDigitalTwinDatasetTools/object_anticipation/adt"
+# sequences = ['Apartment_release_work_seq107_M1292']
+# sequences = ['Apartment_release_work_seq109_M1292'] 
+# sequences = ['Apartment_release_meal_seq131_M1292'] 
+# sequences = ['Apartment_release_meal_seq147_M1292'] 
+# sequences = ['Apartment_release_clean_seq133_M1292']
+# sequences = ['Apartment_release_clean_seq137_M1292']
+# sequences = ['Apartment_release_clean_seq142_M1292'] 
+sequences = ['Apartment_release_clean_seq150_M1292'] 
 
-# Parameters for the language model module (unchanged)
-time_thresholds = [2] 
+# Parameters values
+time_thresholds = [2] # [3, 4, 5, 6]
 avg_dot_threshold_highs = [0.7]
 avg_dot_threshold_lows = [0.2]
 avg_distance_threshold_highs = [3]
 avg_distance_threshold_lows = [1]
-high_dot_thresholds = [0.9]
-distance_thresholds = [2]
-high_dot_counters_threshold = [70, 80, 90] # [15, 30, 45, 60]
-distance_counters_threshold = [70, 80, 90] # [15, 30, 45, 60] 
+high_dot_thresholds = [0.6, 0.7, 0.8, 0.9, 0.95]
+distance_thresholds = [1.5, 2, 2.5, 3, 3.5] # [1.5, 2, 2.5]
+high_dot_counters_threshold = [60, 75] 
+distance_counters_threshold = [15, 30]
 variables_window_times = [3.0]
-
-# Parameters for the LLM reactivation module (unchanged)
 minimum_time_deactivated = [2.0]
-maximum_time_deactivated = [5.0]
-user_relative_movement = [1.5]
+maximum_time_deactivated = [5.0] 
+user_relative_movement = [2.0]
 object_percentage_overlap = [0.7]
+
+# Parameters time
+# time_thresholds = [1, 1.5, 2, 2.5, 3, 3.5, 4, 5, 6]
+# avg_dot_threshold_highs = [0.7]
+# avg_dot_threshold_lows = [0.2]
+# avg_distance_threshold_highs = [3]
+# avg_distance_threshold_lows = [1]
+# high_dot_thresholds = [0.8]
+# distance_thresholds = [1.5, 2, 2.5]
+# high_dot_counters_threshold = [60, 75] 
+# distance_counters_threshold = [15, 30] #, 45, 60, 75, 90]
+# variables_window_times = [3.0]
+# minimum_time_deactivated = [2.0] # [1.0 ,2.0, 3.0]
+# maximum_time_deactivated = [5.0] # [3.0, 5.0, 6.0] 
+# user_relative_movement = [2.0] # [1.0, 2.0, 3.0]
+# object_percentage_overlap = [0.7]
+
+# Parameters counts
+# time_thresholds = [2] # [1, 2, 3]                       
+# avg_dot_threshold_highs = [0.7]                         
+# avg_dot_threshold_lows = [0.2]                          
+# avg_distance_threshold_highs = [3]                       
+# avg_distance_threshold_lows = [1]                       
+# high_dot_thresholds = [0.7, 0.8, 0.9]               
+# distance_thresholds = [1.5, 2, 2.5]                        
+# high_dot_counters_threshold = [15, 30, 45, 60, 75, 90]  
+# distance_counters_threshold = [15, 30, 45, 60, 75, 90]  
+# variables_window_times = [3.0]                          
+# minimum_time_deactivated = [2.0]                        
+# maximum_time_deactivated = [5.0]                        
+# user_relative_movement = [2.0]                          
+# object_percentage_overlap = [0.7]   
+
+# Parameters reactivation
+# time_thresholds = [2]
+# avg_dot_threshold_highs = [0.7]
+# avg_dot_threshold_lows = [0.2]
+# avg_distance_threshold_highs = [3]
+# avg_distance_threshold_lows = [1]
+# high_dot_thresholds = [0.8]
+# distance_thresholds = [1.5, 2, 2.5]
+# high_dot_counters_threshold = [60, 75] 
+# distance_counters_threshold = [15, 30] #, 45, 60, 75, 90]
+# variables_window_times = [3.0]
+# minimum_time_deactivated = [1.0 ,2.0, 3.0]
+# maximum_time_deactivated = [3.0, 5.0, 6.0] 
+# user_relative_movement = [1.0, 2.0, 3.0]
+# object_percentage_overlap = [0.7]
 
 # Generate all combinations of the parameters
 param_combinations = [
@@ -130,20 +183,20 @@ def run_simulation(parameters, ground_truth, sequence):
         'distance_value': parameters['distance_threshold'],
         'dot_counts': parameters['high_dot_counters_threshold'], 
         'distance_counts': parameters['distance_counters_threshold'],
-        'model_overall_accuracy': metrics[0],
+        'accuracy': metrics[0],
         'precision': metrics[1],
         'recall': metrics[2],
-        'llm_activation_sensitivity': metrics[3],
-        'llm_interaction_accuracy': metrics[4],
-        'Tp': metrics[5],
-        'Fp': metrics[6],
-        'Fp_out': metrics[7],
+        'top3_accuracy': metrics[3],
+        'Tp_out': metrics[4],
+        'Fp_out': metrics[5],
+        'Fn': metrics[6],
+        'Tp_in': metrics[7],
         'Fp_in': metrics[8],
-        'Fn': metrics[9],
-        'Total_ground_truths': metrics[10],
-        'Total_llm_predictions': metrics[11], 
-        'Total_llm_activations': metrics[12],
-        'Total_correspondances': metrics[13]
+        'Total_ground_truths': metrics[9],
+        'Total_llm_predictions': metrics[10], 
+        'Total_llm_activations': metrics[11],
+        'Total_correspondances': metrics[12],
+
     }
     results.append(result)
     
@@ -152,7 +205,7 @@ def run_simulation(parameters, ground_truth, sequence):
     os.makedirs(result_folder, exist_ok=True)  
 
     # Write the correspondances
-    write_custom_json(metrics[14], os.path.join(result_folder, 'correspondances.json'))
+    write_custom_json(metrics[13], os.path.join(result_folder, 'correspondances.json'))
     
     return results
 

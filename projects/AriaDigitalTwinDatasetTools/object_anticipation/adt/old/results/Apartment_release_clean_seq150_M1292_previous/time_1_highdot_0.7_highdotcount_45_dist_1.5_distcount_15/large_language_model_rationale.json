@@ -1,0 +1,170 @@
+{
+    "5.399": [
+        {
+            "object": "ChoppingBoard",
+            "reason": "The ChoppingBoard has the highest focus consistency of 91 counts and the shortest approach time of approximately 0.98 seconds, indicating that the user has been observing it closely and can reach it quickly."
+        },
+        {
+            "object": "WoodenBowl",
+            "reason": "The WoodenBowl also has a high focus count of 91 and a reasonable approach time of about 1.66 seconds. Its proximity counts suggest the user has been nearby, supporting its likelihood for interaction."
+        },
+        {
+            "object": "WoodenFork",
+            "reason": "The WoodenFork has a focus count of 91 as well, but with a longer approach time of approximately 1.66 seconds compared to the previous two objects. This slightly lowers its probability of interaction, making it the least likely of the top three."
+        }
+    ],
+    "18.83": [
+        {
+            "object": "KitchenKnife",
+            "reason": "The KitchenKnife has the highest focus consistency (61 counts), satisfying the focus threshold while being close enough (1.167 meters) and requiring 0.965 seconds to approach, which meets both the distance and time criteria."
+        },
+        {
+            "object": "WoodenSpoon",
+            "reason": "The WoodenSpoon shows significant focus consistency (59 counts) and is also within an appropriate distance (1.231 meters) and can be approached in 1.002 seconds, making it a strong candidate for interaction."
+        },
+        {
+            "object": "AirPurifier_1",
+            "reason": "Although the AirPurifier_1 has lower focus consistency (58 counts), it is still within proximity (1.434 meters) and requires 1.315 seconds to approach. It is likely that the user is considering adjusting settings or interacting with it, but it is not as probable as the other two."
+        }
+    ],
+    "26.762": [
+        {
+            "object": "MuffinPan",
+            "reason": "The MuffinPan has the highest focus count (91), a close distance (0.799 meters), and a minimal approach time (0.979 seconds), meeting the thresholds for both focus and proximity, making it the most probable object for interaction."
+        },
+        {
+            "object": "ChoppingBoard",
+            "reason": "The ChoppingBoard also has a high focus count (87) and a suitable approach time of just over a second (1.044 seconds), along with a close proximity (0.978 meters), satisfying the focus and time criteria, thereby making it a strong candidate."
+        },
+        {
+            "object": "Pestel",
+            "reason": "The Pestel has a comparatively lower focus count (73) but maintains a proximity of 0.621 meters and a reasonable approach time (1.760 seconds), which allows it to meet the time and distance criteria, thus rendering it likely for interaction despite not reaching the same focus level as the top two."
+        }
+    ],
+    "33.361": [
+        {
+            "object": "WoodenBowl",
+            "reason": "The WoodenBowl has the highest focus consistency, a good proximity count, and the shortest time to approach, indicating the user is most likely to interact with it soon."
+        },
+        {
+            "object": "Mango_A",
+            "reason": "The Mango_A meets the distance and time thresholds, with significant focus consistency, making it a strong candidate for interaction next."
+        },
+        {
+            "object": "HeatTrivet",
+            "reason": "Although the HeatTrivet does not fully meet the time threshold, it has a high focus count and is close in proximity, suggesting the user may still engage with it soon."
+        }
+    ],
+    "39.227": [
+        {
+            "object": "Jam_Anon",
+            "reason": "Jam_Anon has the highest focus consistency (86 counts) and proximity consistency (89 counts), along with being the closest object (0.873 meters), indicating that the user is highly focused and likely to interact with it soon."
+        },
+        {
+            "object": "WoodenSpoon",
+            "reason": "WoodenSpoon shows strong focus counts (85) and is also nearby (0.760 meters), with a quick approach time (0.93 seconds), making it a highly probable candidate for interaction, especially given its readiness for use in preparing or serving food."
+        },
+        {
+            "object": "WhiteFlatwareTray",
+            "reason": "WhiteFlatwareTray has substantial focus consistency (84 counts) and good proximity (0.881 meters), although it does not rank as high as Jam_Anon or WoodenSpoon. However, its distances still indicate that it is a probable object for interaction as the user navigates the space."
+        }
+    ],
+    "43.226": [
+        {
+            "object": "ChoppingBoard",
+            "reason": "The ChoppingBoard has high focus counts (76) and proximity counts (91), indicating significant attention and closeness, making it the most probable object for interaction. The relatively short approach time (21.67 seconds) suggests the user may intend to utilize it soon."
+        },
+        {
+            "object": "KitchenKnife",
+            "reason": "The KitchenKnife shows strong focus counts (76) and proximity counts (91), similar to the ChoppingBoard, indicating a likely upcoming interaction. Its longer approach time (24.32 seconds) slightly affects its probability but still places it as a high priority due to the strong focus."
+        },
+        {
+            "object": "CoffeeCanisterLarge",
+            "reason": "The CoffeeCanisterLarge has a decent focus (56) and proximity (45) counts but does not meet the time threshold (0.94 seconds). Its proximity indicates the user may be nearby and considering interaction, making it a less likely but possible option for interaction."
+        }
+    ],
+    "47.726": [
+        {
+            "object": "Donut_B",
+            "reason": "Donut_B has the highest focus (50 counts) and a close distance (1.226 meters), along with a short estimated time to approach (0.868 seconds). This suggests that the user is highly likely to interact with this object immediately."
+        },
+        {
+            "object": "ChoppingBoard",
+            "reason": "ChoppingBoard has a significant past focus and shown proximity counts, although it may not have met the distance or time thresholds perfectly. Its frequent past mentions indicate that it is a relevant object for the user's task."
+        },
+        {
+            "object": "KitchenKnife",
+            "reason": "KitchenKnife also appears regularly in past predictions and is essential for many tasks in the vicinity. Although it may have partial counts, its documented relevance and proximity to the user increase its likelihood of interaction."
+        }
+    ],
+    "56.791": [
+        {
+            "object": "BlackCeramicBowl",
+            "reason": "The BlackCeramicBowl has the highest focus count (91) and good proximity count (31). It also has the shortest time to approach (0.958 seconds) among the objects that met the stringent focus and distance criteria, indicating the user is likely to interact with it soon."
+        },
+        {
+            "object": "Mango_A",
+            "reason": "The Mango_A also has a strong focus count (91) and proximity count (26). Its time to approach (1.541 seconds) is adequate, making it a highly probable object for interaction, although slightly less likely than the BlackCeramicBowl."
+        },
+        {
+            "object": "CandleDishSmall",
+            "reason": "The CandleDishSmall has a good focus count (86) and a proximity count (31). It also meets the threshold for time (1.280 seconds), making it a probable choice for user interaction, albeit with slightly lower probability compared to the first two objects."
+        }
+    ],
+    "61.857": [
+        {
+            "object": "BlackCeramicBowl",
+            "reason": "The BlackCeramicBowl has the highest focus consistency (82 counts) and proximity consistency (91 counts) along with a short time to approach (3.017 seconds), making it highly probable that the user will interact with it."
+        },
+        {
+            "object": "BlackCeramicDishSmall",
+            "reason": "The BlackCeramicDishSmall similarly exhibits high focus (82 counts) and proximity (91 counts) along with a reasonable time to approach (2.902 seconds), which indicates that it is likely to be the next object of interaction."
+        },
+        {
+            "object": "GreenApple_A",
+            "reason": "Although the GreenApple_A does not have as high focus counts (58 counts), it is still relatively close (0.982 meters) and has a reasonable time to approach (1.292 seconds). This suggests it could be a desirable object for interaction."
+        }
+    ],
+    "70.455": [
+        {
+            "object": "CandlePattern04_1",
+            "reason": "This object meets the focus, distance, and time thresholds, indicating a high likelihood of interaction. The user has consistently observed this object and is also close enough to approach it quickly."
+        },
+        {
+            "object": "CandlePattern03_1",
+            "reason": "Similar to CandlePattern04_1, this object meets the focus and time thresholds and is within an acceptable distance. The user\u2019s significant focus on this object suggests that they may be considering it for interaction."
+        },
+        {
+            "object": "Cracker_Anon",
+            "reason": "While Cracker_Anon does not meet the focus threshold, it has strong proximity and time counts. The user\u2019s close distance to this object implies potential interaction, even if focus counts are lower compared to the others."
+        }
+    ],
+    "84.753": [
+        {
+            "object": "ChoppingBoard",
+            "reason": "The ChoppingBoard has the highest focus (88) and proximity counts (91), making it highly probable that the user intends to use it for food preparation. It also has a relatively low time to approach (34.93 seconds), which could indicate the user is nearby and focused on it."
+        },
+        {
+            "object": "KitchenKnife",
+            "reason": "The KitchenKnife displays high focus counts (88) and proximity counts (91), indicating that the user is likely planning to use it for cutting or preparing food. The time to approach is slightly longer (40.98 seconds), but its relevance in food preparation keeps its probability high."
+        },
+        {
+            "object": "MuffinPan",
+            "reason": "The MuffinPan has decent focus counts (77) and proximity counts (91), making it probable for interaction. Although the time to approach (10.78 seconds) is shorter than the other two, its lower focus and proximity compared to the top two objects suggests a slightly lesser probability for immediate interaction."
+        }
+    ],
+    "88.886": [
+        {
+            "object": "BlackCeramicBowl",
+            "reason": "The BlackCeramicBowl has a high focus count (91) and a small distance (1.044 meters) with a quick approach time (0.939 seconds), satisfying all thresholds. This indicates a strong likelihood that the user is observing it closely and intends to interact with it soon."
+        },
+        {
+            "object": "Donut_B",
+            "reason": "Donut_B also shows high focus (91 counts) and proximity (1.090 meters). Its approach time is relatively quick (1.270 seconds), suggesting the user has been considering this object for interaction."
+        },
+        {
+            "object": "Mango_A",
+            "reason": "Mango_A meets the focus threshold (91 counts) and has a short distance (1.108 meters), but has a slightly longer approach time (1.092 seconds). Despite this, its proximity suggests it could still be a target for interaction."
+        }
+    ]
+}

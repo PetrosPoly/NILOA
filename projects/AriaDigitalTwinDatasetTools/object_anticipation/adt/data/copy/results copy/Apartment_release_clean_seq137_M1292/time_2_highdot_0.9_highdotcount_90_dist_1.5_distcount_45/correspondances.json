@@ -1,0 +1,7 @@
+[
+    [26.096, ["CakeMocha_A", "Carrot_A", "GreenApple_A"], [[29.362, "MuffinPan"]]],
+    [36.794, ["WoodenSpoon", "MuffinPan", "CakeMocha_A"], [[40.16, "BlackCeramicDishLarge"]]],
+    [40.327, ["BlackCeramicMug", "CandleDishMedium", "Jam_Anon"], [[46.259, "Donut_B"]]],
+    [53.058, ["Donut_B", "BlackCeramicMug", "CandleDishMedium"], [[59.757, "BlackCeramicBowl"]]],
+    [75.188, ["BlackCeramicDishLarge", "Mug_2", "Jam_Anon"], [[76.121, "BlackCeramicDishSmall"]]]
+]

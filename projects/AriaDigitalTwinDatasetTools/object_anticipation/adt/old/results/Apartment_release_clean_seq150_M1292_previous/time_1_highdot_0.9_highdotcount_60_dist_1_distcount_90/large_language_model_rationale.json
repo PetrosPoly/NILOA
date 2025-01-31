@@ -1,0 +1,58 @@
+{
+    "26.829": [
+        {
+            "object": "MuffinPan",
+            "reason": "The MuffinPan has the highest focus count (89) and is within a close distance (0.818 meters) with a time to approach of approximately 0.91 seconds, making it likely that the user intends to interact with it soon."
+        },
+        {
+            "object": "KitchenKnife",
+            "reason": "The KitchenKnife has a strong focus count (69) and is also within an acceptable distance (0.980 meters) with a quick approach time (about 1.03 seconds), suggesting it's a key object for the user in their current tasks."
+        },
+        {
+            "object": "Pestel",
+            "reason": "The Pestel has a decent focus count (48) and close proximity (0.615 meters), although the time to approach is longer (5.80 seconds). It suggests the user may be considering or planning to use it, but it might not be their immediate choice."
+        }
+    ],
+    "41.327": [
+        {
+            "object": "WoodenSpoon",
+            "reason": "The WoodenSpoon has the highest focus consistency (86 counts) and is also within the acceptable proximity (0.665 meters), and it requires only a short time (0.9 seconds) to approach. It clearly meets all thresholds, making it the most probable object for interaction."
+        },
+        {
+            "object": "Jam_Anon",
+            "reason": "Jam_Anon has significant focus consistency (47 counts) and a reasonable distance (0.845 meters), with an approach time of about 2.6 seconds. While its focus counts are lower than the WoodenSpoon, it still meets both distance and focus thresholds, making it a strong candidate for interaction next."
+        },
+        {
+            "object": "BambooPlate",
+            "reason": "BambooPlate shows a decent focus count (34 counts) but does not meet the time threshold (1.64 seconds), even though it is within proximity (0.853 meters). Its lower focus consistency keeps it as the least probable option, but it is still likely to be considered due to proximity."
+        }
+    ],
+    "58.791": [
+        {
+            "object": "BlackCeramicBowl",
+            "reason": "The BlackCeramicBowl has a high focus count of 74 and a proximity count of 43, making it a strong candidate for interaction. It also has a short time to approach (0.681 seconds), meeting both the focus and proximity criteria."
+        },
+        {
+            "object": "BlackCeramicDishLarge",
+            "reason": "The BlackCeramicDishLarge also has a focus count of 74 and a proximity count of 42. Its time to approach is slightly longer (0.721 seconds) but still suitable, placing it just below the BlackCeramicBowl in terms of probability."
+        },
+        {
+            "object": "CakeMocha_A",
+            "reason": "The CakeMocha_A has a focus count of 91, indicating significant user interest, alongside a reasonable proximity count of 35. However, its longer time to approach (4.096 seconds) makes it less likely than the first two objects, though it remains a probable choice due to strong focus."
+        }
+    ],
+    "65.156": [
+        {
+            "object": "CandleDishSmall",
+            "reason": "This object has the highest focus counts (91) and is also very close to the user (0.937 meters) with a low approach time (1.35 seconds). It meets all thresholds, making it the most likely candidate for interaction."
+        },
+        {
+            "object": "Donut_B",
+            "reason": "Donut_B also has a high focus count (65) and is at a distance that meets the proximity threshold (0.899 meters) with an approach time of under a second (0.98 seconds). This suggests the user has a keen interest in this object as well."
+        },
+        {
+            "object": "Tomato_A",
+            "reason": "Tomato_A shows lower focus counts (88) but maintains proximity (1.105 meters) within reasonable limits and has a decent approach time (1.95 seconds). While it does not meet the focus threshold, its proximity suggests a higher likelihood of interaction."
+        }
+    ]
+}

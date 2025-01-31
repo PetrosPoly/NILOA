@@ -1,0 +1,9 @@
+[
+    [7.599, ["WoodenSpoon", "AirPurifier_1", "None"], [[8.699, "WoodenSpoon"]]],
+    [21.996, ["Jam_Anon", "DinoToy", "Flask"], [[32.395, "WoodenBowl"]]],
+    [40.96, ["CakeMocha_A", "KitchenKnife", "WoodenBowl"], [[41.493, "MuffinPan"]]],
+    [46.826, ["SandwichBLT_A", "WoodenFork", "KitchenKnife"], [[47.759, "WoodenFork"]]],
+    [67.356, ["WoodenBowl", "MuffinPan", "KitchenKnife"], [[67.656, "WoodenSpoon"]]],
+    [75.321, ["CandleDishSmall", "CandleDishMedium", "WoodenFork"], [[76.988, "BirdHouseToy"]]],
+    [87.986, ["BlackCeramicMug", "BookDeepLearning", "BlackTablet"], [[88.919, "BlackCeramicMug"]]]
+]

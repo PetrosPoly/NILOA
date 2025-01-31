@@ -161,8 +161,8 @@ class Statistics:
             # Time to approach an object 
             user_object_time_xyz, user_object_time_xz = self.interaction_time_user_object(users_velocity, users_position, obj_position[0], T_Scene_Device)
             
-            if obj_id == 4404207983027294 and current_time_s > 4.5:
-                print(f"[INSIDE CLASS] - Time to approach the Chopping Board is {user_object_time_xz}")
+            # if obj_id == 4404207983027294 and current_time_s > 4.5:
+            #     print(f"[INSIDE CLASS] - Time to approach the Chopping Board is {user_object_time_xz}")
             
             # Dictionary having the time of with the user
             self.object_time_interaction[obj_id] = user_object_time_xz

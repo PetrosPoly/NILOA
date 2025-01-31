@@ -16,10 +16,11 @@ The object selection process should be structured based on the following criteri
 prompt_predict:
 Based on the provided instructions, predict the three objects the user is most likely to interact with, listed in order of highest probability. Use the actual names of the objects and assign probabilities for each, ensuring that the total sum of the probabilities equals 1. Additionally, explain the reasoning behind each prediction.
 To ensure clear reasoning, let’s think step by step.
-The output should be formatted in plain YAML without any additional formatting symbols such as triple quotes. The following is the expected format:
+The output should be formatted in plain YAML without any additional formatting symbols such as triple quotes (""") and colons (:) to maintain valid YAML syntax. The YAML should include the following sections:
+
 most_likely_objects_to_interact_with:
     - object: Object1
-      probability: 0.4
+      probability: 0.4 
     - object: Object2
       probability: 0.35
     - object: Object3
@@ -38,7 +39,4 @@ predicted_interaction_objects:
     - Object2
     - Object3
 
-goal_of_the_user: Based on the current predictions and past ones from the previous_predictions list, it is inferred that the user's goal is...(continue your reply without adding any special characters like quotes or trple quotes)
-
-
-
+goal_of_the_user: Based on the current predictions and past ones from the previous_predictions list, it is inferred that the user's goal is...(continue your reply without adding any special characters like quotes or triple quotes or colons)

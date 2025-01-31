@@ -48,6 +48,8 @@ from projectaria_tools.projects.adt import (
     STATIC,
 )
 
+import multiprocessing as mp
+
 from tqdm import tqdm    
 
 from helpers import write_to_excel # Me: added by Petros and is only for debugging
@@ -102,7 +104,7 @@ def parse_args():
     parser.add_argument("--device_number", type=int, default=0, help="Device_number you want to visualize, default is 0")
     parser.add_argument("--down_sampling_factor", type=int, default=4, help=argparse.SUPPRESS)
     parser.add_argument("--jpeg_quality", type=int, default=75, help=argparse.SUPPRESS)
-    parser.add_argument("--rrd_output_path", type=str, default="", help=argparse.SUPPRESS)                                                # Me: If this path is set, we will save the rerun (.rrd) file to the given path
+    parser.add_argument("--rrd_output_path", type=str, default="", help=argparse.SUPPRESS  )                                  # Me: If this path is set, we will save the rerun (.rrd) file to the given path
     parser.add_argument("--use_llm", action='store_true',help="If you include it in arguments becomes True")                              # Me: added by Petros, if there is a value that 
     parser.add_argument("--runrr", action='store_true',help="Run the the visualization part..same as above")   
     parser.add_argument("--visualize_objects", action='store_true',help="Visualize the objects in the rerun.io")   
@@ -116,17 +118,17 @@ main_logger = logging.getLogger(__name__)
 # Parameters Settting
 # ==============================================
 
-# Parameters for the language model module       
-time_thresholds = [2]                            # Time (in seconds) before interaction to activate the LLM
-avg_dot_threshold_highs = [0.7]                  # Filter objects: keep only those with an average dot product above this value
-avg_dot_threshold_lows = [0.2]                   # Filter objects: keep only those with an average dot product above this minimum value
-avg_distance_threshold_highs = [3]               # Filter objects: keep only those with an average distance below this value
-avg_distance_threshold_lows = [1]                # Filter objects: keep only those with an average distance above this minimum value
+# Parameters for the language model module
+time_thresholds = [2] # [1, 2, 3, 4]           # Time (in seconds) before interaction to activate the LLM
+avg_dot_threshold_highs = [0.7]             # Filter objects: keep only those with an average dot product above this value
+avg_dot_threshold_lows = [0.2]              # Filter objects: keep only those with an average dot product above this minimum value
+avg_distance_threshold_highs = [3]          # Filter objects: keep only those with an average distance below this value
+avg_distance_threshold_lows = [1]           # Filter objects: keep only those with an average distance above this minimum value
 
-high_dot_thresholds = [0.9]                      # Count objects with dot product values exceeding this threshold
-distance_thresholds = [2]                        # Count objects with distance values below this threshold
-high_dot_counters_threshold = [70]               # Keep objects that exceed this count for dot product values above the threshold
-distance_counters_threshold = [70]               # Keep objects that exceed this count for distance values below the threshold
+high_dot_thresholds = [0.8] # [0.7, 0.8, 0.9]                    # Count objects with dot product values exceeding this threshold
+distance_thresholds = [2] # [1, 1.5, 2]                        # Count objects with distance values below this threshold
+high_dot_counters_threshold = [45] # [15, 30, 45, 60, 75, 90]   # Keep objects that exceed this count for dot product values above the threshold
+distance_counters_threshold = [60] # [15, 30, 45, 60, 75, 90]   # Keep objects that exceed this count for distance values below the threshold
 
 variables_window_times = [3.0]                   # Sliding time window (in seconds) for tracking these parameters
 
@@ -179,11 +181,11 @@ for parameters in param_combinations: # TODO parallel 4 loop
         args = parse_args()
         
         # Base folder path for saving predictions
-        project_path = "Documents/projectaria_sandbox/projectaria_tools/projects/AriaDigitalTwinDatasetTools/object_anticipation/adt/"
+        project_path = "/home/ppolydorou/Documents/projectaria_sandbox/next_active_object_anticipation_projectaria_twin_dataset/projects/AriaDigitalTwinDatasetTools/object_anticipation/adt"
         sequence_path = args.sequence_path
 
         # Datasets path
-        datasets_path = 'Documents/projectaria_tools_adt_data/'
+        datasets_path = '/mnt/data/petros/projectaria_tools_adt_data/'
         dataset_folder = os.path.join(datasets_path, sequence_path)
         os.makedirs(dataset_folder, exist_ok=True)                                          # Me: Ensure the entire directory 
         
@@ -301,7 +303,7 @@ for parameters in param_combinations: # TODO parallel 4 loop
                                 parameters["distance_threshold"], 
                                 parameters["distance_threshold"], 
                                 parameters["time_threshold"]
-                                )      # Me: Initialize the Object Statistics instance
+                                )      # Me: Initialize the ObjectStatistics instance
         
         # ==============================================
         # Load the Ground truth data 
@@ -314,6 +316,12 @@ for parameters in param_combinations: # TODO parallel 4 loop
         gt_start_times = np.array([movement_time_dict[obj]['start_time'] for obj in gt_object_names])
         gt_end_times = np.array([movement_time_dict[obj]['end_time'] for obj in gt_object_names])
         
+        # Extract the ground truth object names
+        gt_object_names = np.array(list(movement_time_dict.keys()))
+        # Extract start and end times as lists of arrays
+        gt_start_times = [np.array(movement_time_dict[obj]['start_times']) for obj in gt_object_names]
+        gt_end_times = [np.array(movement_time_dict[obj]['end_times']) for obj in gt_object_names]
+
         # ==============================================
         # Loop over all timestamps in the sequence
         # ==============================================
@@ -685,10 +693,15 @@ for parameters in param_combinations: # TODO parallel 4 loop
 
             # High duration objects
             high_duration_objects = {}
-            
-            # Identify objects in motion using NumPy
-            objects_in_motion = gt_object_names[(gt_start_times <= current_time_s) & (current_time_s <= gt_end_times)].tolist()
-            
+
+            # Identify objects in motion by iterating through each object and checking all start-end pairs
+            objects_in_motion = []
+            for obj_name, start_times, end_times in zip(gt_object_names, gt_start_times, gt_end_times):
+                # Check if the current time falls within any start-end interval for the object
+                in_motion = any((start <= current_time_s <= end) for start, end in zip(start_times, end_times))
+                if in_motion:
+                    objects_in_motion.append(obj_name)
+
             # Combine the logic for high dot counts and low distance counts into one loop
             for index, object_id in enumerate(filtered_obj_ids):
                 object_name = gt_provider.get_instance_info_by_id(object_id).name
@@ -754,7 +767,7 @@ for parameters in param_combinations: # TODO parallel 4 loop
             In summary the conditions to activate the LLM are the following: 
             
             Object with high dot counts  > threshold but also has distance counts --> visibility is certain as high dot counts over theshold
-            Object with distance counts  > threshold but also has high dot counts --> visibility is certain as distance counts over threshold
+            Object with distance counts  > threshold but also has high dot counts --> visibility is certain as distance counts over the threshold
             Object with time to approach < threshold but has some high dot and distance counts and visibility duration --> visibility duration over 1 second
             
             ===== 
@@ -855,7 +868,7 @@ for parameters in param_combinations: # TODO parallel 4 loop
                         history_logger.info(f"History Log: {history_log}")
 
                         # Write the conditions to excel for debugging
-                        write_to_excel(filtered_names_high_dot_counts, filtered_names_low_distance_counts, filtered_names_time_to_approach, filtered_names_dot, filtered_names_distances, predictions_dict, goals_dict, args.sequence_path, parameter_folder_name, current_time_s)
+                        # write_to_excel(filtered_names_high_dot_counts, filtered_names_low_distance_counts, filtered_names_time_to_approach, filtered_names_dot, filtered_names_distances, predictions_dict, goals_dict, args.sequence_path, parameter_folder_name, current_time_s)
             
             # ==============================================
             # Objects Inside the radius & LLM activation conditions
@@ -872,7 +885,7 @@ for parameters in param_combinations: # TODO parallel 4 loop
             user_objects = group_analyzer.compare_objects()                                   # Me: Boolean value (True/False) if user moved to different area based on objects around
             users_move = group_analyzer.user_move(user_relative_total_movement)               # Me: Boolean value (True/False) if user moved to different area based on movement
             time_since_last_activation = current_time_s - last_activation_time                # Me: Time 
-            
+
             # Conditions to enable the LLM
             """
             4 conditions for the LLM
@@ -915,6 +928,7 @@ for parameters in param_combinations: # TODO parallel 4 loop
 
         print(f"Saved predictions for parameters to {prediction_file}")
 
+
 # ==============================================
 # Run for different parameter combinations in parallel
 # ==============================================
@@ -925,4 +939,5 @@ if __name__ == "__main__":
     end_time = time.time()
     
     print(f"Total time taken: {end_time - start_time:.2f} seconds")
+
 

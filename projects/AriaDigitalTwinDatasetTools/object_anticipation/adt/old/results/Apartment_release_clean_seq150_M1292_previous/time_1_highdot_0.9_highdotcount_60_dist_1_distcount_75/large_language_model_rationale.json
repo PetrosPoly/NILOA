@@ -1,0 +1,58 @@
+{
+    "26.829": [
+        {
+            "object": "MuffinPan",
+            "reason": "The MuffinPan has the highest focus count of 89 and a proximity count of 50, indicating that it has captured the user's attention consistently. Although it does not fully meet the time threshold, it is still within reasonable proximity and has significant focus, making it the most probable object for interaction."
+        },
+        {
+            "object": "KitchenKnife",
+            "reason": "The KitchenKnife has a strong focus count of 69 and a time to approach of approximately 1.03 seconds, which is just above the time threshold. This indicates that the object is within a reasonable distance and has grabbed the user's attention, leading to a high probability of interaction."
+        },
+        {
+            "object": "Pestel",
+            "reason": "The Pestel has a focus count of 48 and a time to approach of 5.8 seconds, which does not satisfy the time threshold. However, it is close proximity-wise (0.615 meters) and has a decent focus, making it still probable for future interaction albeit less likely than the previous two."
+        }
+    ],
+    "39.227": [
+        {
+            "object": "WoodenSpoon",
+            "reason": "The WoodenSpoon has the highest focus consistency (78 counts) and is within the proximity threshold (0.76 meters). Additionally, it meets the time threshold (0.93 seconds), indicating that the user is highly likely to interact with it soon."
+        },
+        {
+            "object": "Pestel",
+            "reason": "The Pestel has a significant focus count (22 counts) and is within proximity. It meets the distance threshold (0.94 meters) but does not meet the time threshold, making it a probable object for interaction."
+        },
+        {
+            "object": "Jam_Anon",
+            "reason": "Although the Jam_Anon has a high focus count (25 counts), it does not meet the time threshold. However, it is within the proximity limit (0.873 meters). This combination of proximity and focus keeps it as a possible candidate likely to be interacted with."
+        }
+    ],
+    "58.791": [
+        {
+            "object": "BlackCeramicBowl",
+            "reason": "The BlackCeramicBowl has high focus consistency (74 counts), is within proximity (0.771 meters), and has a fast time to approach (approximately 0.68 seconds). This combination makes it highly probable for interaction."
+        },
+        {
+            "object": "Cereal_Anon",
+            "reason": "Cereal_Anon shows very high focus consistency (91 counts), is close (0.958 meters), and has a reasonable time to approach (about 2.37 seconds), which positions it as the next most likely object for interaction."
+        },
+        {
+            "object": "BlackCeramicDishLarge",
+            "reason": "The BlackCeramicDishLarge also has high focus consistency (74 counts), is nearly within the distance threshold (0.794 meters), and has a suitable time to approach (approximately 0.72 seconds), making it a strong candidate for interaction."
+        }
+    ],
+    "65.156": [
+        {
+            "object": "CandleDishSmall",
+            "reason": "The CandleDishSmall has the highest focus consistency count (91) and a proximity count of 91, meaning the user is focusing on it a lot while being very close. Additionally, it has an acceptable approach time of about 1.35 seconds. This object satisfies all thresholds, making it the most likely to be interacted with."
+        },
+        {
+            "object": "Donut_B",
+            "reason": "Donut_B shows significant focus consistency (65) and high proximity (91), while also having a short approach time of around 0.98 seconds. Although its focus count is lower than that of CandleDishSmall, the high proximity compensates for it, placing it as the second most probable object for interaction."
+        },
+        {
+            "object": "Tomato_A",
+            "reason": "Tomato_A has notable focus consistency (88) and decent proximity (69), with a longer approach time of about 1.95 seconds. While it fails to meet the time threshold, it still meets the focus and distance criteria, earning it the third position in likelihood for interaction."
+        }
+    ]
+}

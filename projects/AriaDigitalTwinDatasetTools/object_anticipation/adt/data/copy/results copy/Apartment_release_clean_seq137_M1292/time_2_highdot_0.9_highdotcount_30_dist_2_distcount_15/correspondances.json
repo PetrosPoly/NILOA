@@ -1,0 +1,10 @@
+[
+    [10.132, ["TvRemote_1", "BlackTablet", "BookDeepLearning"], [[11.165, "GreenApple_A"]]],
+    [28.429, ["MuffinPan", "Lemon_A", "CakeMocha_A"], [[29.362, "MuffinPan"]]],
+    [36.794, ["WoodenSpoon", "MuffinPan", "CakeMocha_A"], [[40.16, "BlackCeramicDishLarge"]]],
+    [43.76, ["Donut_B", "SandwichBLT_A", "Mug_2"], [[46.259, "Donut_B"]]],
+    [59.224, ["BlackCeramicBowl", "CandlePattern04_1", "BookDeepLearning"], [[59.757, "BlackCeramicBowl"]]],
+    [68.622, ["BlackCeramicDishSmall", "ConsoleTable", "Apartment_DoubleDoorB"], [[69.789, "BlackCeramicDishSmall"], [69.822, "BlackCeramicBowl"]]],
+    [71.955, ["BambooPlate", "BlackCeramicDishLarge", "Mug_2"], [[76.121, "BlackCeramicDishSmall"]]],
+    [82.92, ["TvRemote_1", "BlackTablet", "BookDeepLearning"], [[83.72, "DinoToy"]]]
+]

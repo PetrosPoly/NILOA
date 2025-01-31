@@ -1,0 +1,6 @@
+[
+    [12.598, ["Magazine02_1", "Magazine02_2", "BlackCeramicBowl"], [[14.798, "BlackRoundTable"]]],
+    [25.163, ["TvRemote_1", "BlackCeramicBowl", "Magazine02_1"], [[27.262, "BookDeepLearning"]]],
+    [58.791, ["BookDeepLearning", "BlackRoundTable", "TvRemote_1"], [[64.056, "Flask"]]],
+    [76.421, ["BlackTablet", "BlackCeramicMug", "CakeMocha_A"], [[77.521, "BlackCeramicMug"]]]
+]

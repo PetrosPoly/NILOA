@@ -1,0 +1,86 @@
+{
+    "26.762": [
+        {
+            "object": "MuffinPan",
+            "reason": "The MuffinPan has the highest focus (91 counts) and is within close proximity (0.799 meters) with a short time to approach (0.979 seconds). This suggests the user is likely preparing to interact with it immediately."
+        },
+        {
+            "object": "ChoppingBoard",
+            "reason": "The ChoppingBoard has a solid focus (72 counts) and is also within a reasonable distance (0.978 meters) with a very quick time to approach (1.044 seconds). This makes it probable for interaction as well, especially for meal preparation tasks."
+        },
+        {
+            "object": "Pestel",
+            "reason": "The Pestel has a good focus (60 counts) and is relatively close (0.621 meters), combined with a quick time to approach (1.760 seconds). While it slightly exceeds the optimal time threshold, its solid focus count indicates it is still a likely candidate for interaction."
+        }
+    ],
+    "35.628": [
+        {
+            "object": "Mango_A",
+            "reason": "Mango_A has the highest focus consistency count (91) and is also the closest object (0.909 meters), meeting the focus and distance thresholds. Additionally, it has a time to approach of approximately 0.94 seconds, which meets the time threshold."
+        },
+        {
+            "object": "BlackCeramicBowl",
+            "reason": "BlackCeramicBowl exhibits significant focus consistency (83 counts) and a proximity consistency of 29 counts. It is located 1.101 meters away and has a time to approach of about 1.12 seconds, which is slightly above the time threshold but still indicates likelihood of interaction."
+        },
+        {
+            "object": "CakeMocha_A",
+            "reason": "CakeMocha_A has a high focus count (91) and is 1.080 meters away from the user. The time to approach is 1.495 seconds, which exceeds the threshold, but the significant focus and proximity indicate it is still a probable object for interaction."
+        }
+    ],
+    "39.227": [
+        {
+            "object": "WoodenSpoon",
+            "reason": "The WoodenSpoon has the highest focus count of 83 and is within a close distance of 0.76 meters. This makes it highly probable that the user intends to interact with it, especially since it also has a reasonable approach time of 0.93 seconds, satisfying all thresholds effectively."
+        },
+        {
+            "object": "Jam_Anon",
+            "reason": "The Jam_Anon has a very high focus count of 61 and is close at 0.87 meters. It also has a good proximity count, suggesting that the user has been nearby for a significant amount of time. Its approach time of 2.45 seconds is slightly above the preferred threshold but still within an actionable range."
+        },
+        {
+            "object": "WhiteFlatwareTray",
+            "reason": "The WhiteFlatwareTray shows a focus count of 81 and is within 0.88 meters distance. Although it does not meet the time threshold as effectively (1.24 seconds), its strong focus and proximity suggest it may still be an object the user is considering for interaction."
+        }
+    ],
+    "58.791": [
+        {
+            "object": "Cereal_Anon",
+            "reason": "Cereal_Anon has the highest focus consistency count (60) and is very close to the user (0.958 meters) with a relatively quick approach time (2.37 seconds). This makes it a highly probable object for interaction."
+        },
+        {
+            "object": "BlackCeramicBowl",
+            "reason": "The BlackCeramicBowl also demonstrates significant focus consistency (74 counts) and proximity (0.771 meters), along with a very fast approach time of 0.68 seconds. These metrics suggest a strong likelihood of upcoming interaction."
+        },
+        {
+            "object": "BlackCeramicDishLarge",
+            "reason": "BlackCeramicDishLarge meets the focus threshold with counts of 74, solid proximity (0.794 meters), and an approach time of 0.72 seconds. While it does not exceed the others in focus, it remains highly probable due to favorable metrics."
+        }
+    ],
+    "65.156": [
+        {
+            "object": "CandleDishSmall",
+            "reason": "This object has the highest focus and proximity counts, indicating that the user has spent significant time observing and is close enough to interact quickly. It meets all the thresholds, making it the most likely candidate for interaction."
+        },
+        {
+            "object": "Donut_B",
+            "reason": "This object also has high focus and proximity counts and is within a short distance for approach, particularly showing a low time to approach. While it does not have as high of focus counts as CandleDishSmall, its overall proximity and quick access make it a very probable choice."
+        },
+        {
+            "object": "Tomato_A",
+            "reason": "Tomato_A meets the focus and proximity thresholds adequately but fails to meet the time threshold. However, its sustained proximity indicates a likelihood of interaction, placing it next in probability."
+        }
+    ],
+    "74.155": [
+        {
+            "object": "CandlePattern01_1",
+            "reason": "CandlePattern01_1 has the highest focus consistency with 85 counts, is within proximity (1.046 meters), and requires the least time to approach (0.87 seconds), making it the object with the highest probability of interaction."
+        },
+        {
+            "object": "CandlePattern02_1",
+            "reason": "CandlePattern02_1 follows closely with a focus consistency of 77 counts and is within a similar proximity range (1.061 meters). Its time to approach is also reasonable (1.19 seconds), placing it as the second most likely object for interaction."
+        },
+        {
+            "object": "CandlePattern03_1",
+            "reason": "CandlePattern03_1 has strong focus consistency at 70 counts and is also relatively close (1.033 meters). However, it has a slightly longer approach time (1.02 seconds), which affects its overall ranking, leading to it being the third most likely object."
+        }
+    ]
+}

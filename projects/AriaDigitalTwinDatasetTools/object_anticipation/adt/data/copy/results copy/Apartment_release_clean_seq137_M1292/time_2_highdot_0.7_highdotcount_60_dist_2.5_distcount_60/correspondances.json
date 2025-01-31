@@ -1,0 +1,11 @@
+[
+    [10.398, ["TvRemote_1", "GreenApple_A", "BlackTablet"], [[11.165, "GreenApple_A"]]],
+    [28.429, ["CakeMocha_A", "Lemon_A", "MuffinPan"], [[29.362, "MuffinPan"]]],
+    [36.794, ["MuffinPan", "CakeMocha_A", "WoodenBowl"], [[40.16, "BlackCeramicDishLarge"]]],
+    [43.76, ["Donut_B", "Mug_2", "HeatTrivet"], [[46.259, "Donut_B"]]],
+    [57.591, ["TvRemote_1", "BlackCeramicBowl", "DvdRemote_1"], [[59.757, "BlackCeramicBowl"]]],
+    [61.623, ["GameControllerBlack", "RecordPlayer_1", "WhaleNightLight_2"], [[62.357, "DinoToy"]]],
+    [68.856, ["BlackCeramicDishSmall", "ConsoleTable", "AirPurifier_1"], [[69.789, "BlackCeramicDishSmall"], [69.822, "BlackCeramicBowl"]]],
+    [72.788, ["BambooPlate", "BlackCeramicDishLarge", "Jam_Anon"], [[76.121, "BlackCeramicDishSmall"]]],
+    [81.954, ["Frisbee_Anon", "TvRemote_1", "DvdRemote_1"], [[83.72, "DinoToy"]]]
+]
